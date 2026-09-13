@@ -1,0 +1,1067 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/ChatGPT Image Sep 3, 2026, 07_58_11 PM.png" type="image/x-icon">
+    <meta
+        name="description"
+        content="NexaBank secure personal banking dashboard."
+    >
+
+    <title>NexaBank | Dashboard</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+</head>
+<!-- =========================================
+     NEXA AI ASSISTANT
+========================================= -->
+
+<button class="nexa-ai-button" id="nexaAiButton" aria-label="Open Nexa AI">
+
+    <i class="fa-solid fa-robot"></i>
+
+    <span class="nexa-ai-pulse"></span>
+
+</button>
+
+
+<div class="nexa-ai-chat" id="nexaAiChat">
+
+    <!-- HEADER -->
+
+    <div class="nexa-ai-header">
+
+        <div class="nexa-ai-title">
+
+            <div class="nexa-ai-avatar">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <div>
+                <strong>Nexa AI</strong>
+
+                <span>
+                    <i class="fa-solid fa-circle"></i>
+                    Online
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="nexa-ai-header-actions">
+
+            <button id="nexaClearChat" title="Clear chat">
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+            <button id="nexaCloseChat" title="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CHAT BODY -->
+
+    <div class="nexa-ai-messages" id="nexaAiMessages">
+
+        <!-- Welcome message is inserted by JavaScript -->
+
+    </div>
+
+
+    <!-- QUICK QUESTIONS -->
+
+    <div class="nexa-ai-suggestions" id="nexaAiSuggestions">
+
+        <button data-question="How do I transfer money?">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            Transfer money
+        </button>
+
+        <button data-question="Show me my transactions">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Transactions
+        </button>
+
+        <button data-question="Tell me about my card">
+            <i class="fa-solid fa-credit-card"></i>
+            My card
+        </button>
+
+        <button data-question="I need help">
+            <i class="fa-solid fa-circle-question"></i>
+            Get help
+        </button>
+
+    </div>
+
+
+    <!-- INPUT -->
+
+    <div class="nexa-ai-input-area">
+
+        <input
+            type="text"
+            id="nexaAiInput"
+            placeholder="Ask Nexa AI..."
+            autocomplete="off"
+        >
+
+        <button id="nexaAiSend" aria-label="Send message">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+        </button>
+
+    </div>
+
+
+    <div class="nexa-ai-footer">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        Nexa AI is a frontend demonstration
+
+    </div>
+
+</div>
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="dashboard-header">
+
+    <a href="index.html" class="logo">
+        Nexa<span>Bank</span>
+    </a>
+
+    <div class="header-right">
+
+        <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="transactionSearch"
+                placeholder="Search transactions..."
+            >
+        </div>
+
+        <button
+            class="header-icon"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+            title="Toggle dark mode"
+        >
+            <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <button
+            class="notification"
+            id="notificationBtn"
+            aria-label="Notifications"
+            title="Notifications"
+        >
+            <i class="fa-regular fa-bell"></i>
+            <span class="notification-dot"></span>
+        </button>
+
+        <div class="profile">
+
+            <div class="profile-image">
+                A
+            </div>
+
+            <div class="profile-info">
+                <strong>Albert</strong>
+                <small>Personal Account</small>
+            </div>
+
+            <i class="fa-solid fa-chevron-down profile-arrow"></i>
+
+        </div>
+
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Open menu"
+        >
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-content">
+
+        <div class="sidebar-label">
+            MAIN MENU
+        </div>
+
+        <nav>
+
+            <a href="dashboard.html" class="active">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="transfer.html" >
+                <i class="fa-solid fa-money-bill-transfer"></i>
+                <span>Transfer</span>
+            </a>
+
+            <a href="transfer.html">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <span>Receive Money</span>
+            </a>
+
+            <a href="payments.html" >
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+                <span>Bill Payments</span>
+            </a>
+
+            <a href="payments.html" >
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <span>Airtime & Data</span>
+            </a>
+
+            <a href="transactions.html" >
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>Transactions</span>
+            </a>
+
+            <a href="my-card.html" >
+                <i class="fa-solid fa-credit-card"></i>
+                <span>My Cards</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-label second-label">
+            ACCOUNT
+        </div>
+
+        <nav>
+
+            <a href="profile.html" >
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+
+            <a href="settings.html" >
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+
+            <a href="support.html" >
+                <i class="fa-solid fa-circle-question"></i>
+                <span>Help & Support</span>
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <!-- Security -->
+
+    <div class="security-card">
+
+        <div class="security-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+        </div>
+
+        <div>
+            <strong>Your account is secure</strong>
+            <p>Last checked today</p>
+        </div>
+
+    </div>
+
+
+    <button class="logout-btn" id="logoutBtn">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        <span>Logout</span>
+
+    </button>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN DASHBOARD
+===================================================== -->
+
+<main class="dashboard">
+
+    <div class="dashboard-inner">
+
+
+        <!-- =================================================
+             WELCOME
+        ================================================= -->
+
+        <section class="welcome dashboard-reveal">
+
+            <div class="welcome-content">
+
+                <span class="welcome-tag">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Secure Banking
+                </span>
+
+                <h1>
+                    Welcome back, Albert <span>👋</span>
+                </h1>
+
+                <p>
+                    Here's your financial overview for today.
+                </p>
+
+            </div>
+
+            <button
+                class="primary-btn"
+                id="newTransactionBtn"
+            >
+                <i class="fa-solid fa-plus"></i>
+                New Transaction
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             FINANCIAL SUMMARY
+        ================================================= -->
+
+        <section class="dashboard-summary dashboard-reveal">
+
+
+            <!-- BALANCE -->
+
+            <div class="balance-card">
+
+                <div class="balance-glow"></div>
+
+                <div class="card-top">
+
+                    <div class="balance-title">
+
+                        <span>Total Balance</span>
+
+                        <small>
+                            Personal Account
+                        </small>
+
+                    </div>
+
+                    <button
+                        class="balance-menu"
+                        aria-label="Balance options"
+                    >
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="balance-amount-row">
+
+                    <h2 id="balanceAmount">
+                        ₦2,450,000.00
+                    </h2>
+
+                    <button
+                        class="balance-toggle"
+                        id="balanceToggle"
+                        title="Hide balance"
+                        aria-label="Hide balance"
+                    >
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="account-row">
+
+                    <div>
+
+                        <span>Account Number</span>
+
+                        <strong id="accountNumber">
+                            **** **** 6745
+                        </strong>
+
+                    </div>
+
+                    <button
+                        id="copyAccount"
+                        class="copy-btn"
+                    >
+                        <i class="fa-regular fa-copy"></i>
+                        Copy
+                    </button>
+
+                </div>
+
+
+                <div class="card-bottom">
+
+                    <div>
+
+                        <span>Available Balance</span>
+
+                        <strong>
+                            ₦2,450,000.00
+                        </strong>
+
+                    </div>
+
+                    <div class="account-status">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        Active
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INCOME -->
+
+            <div class="stat-card income-card">
+
+                <div class="stat-card-top">
+
+                    <div class="stat-icon income">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </div>
+
+                    <button class="stat-more">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <span>Total Income</span>
+
+                    <h3>
+                        ₦850,000
+                    </h3>
+
+                    <small class="positive-text">
+                        <i class="fa-solid fa-arrow-up"></i>
+                        12.5% this month
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPENSES -->
+
+            <div class="stat-card expense-card">
+
+                <div class="stat-card-top">
+
+                    <div class="stat-icon expense">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </div>
+
+                    <button class="stat-more">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+
+                </div>
+
+                <div class="stat-content">
+
+                    <span>Total Expenses</span>
+
+                    <h3>
+                        ₦320,500
+                    </h3>
+
+                    <small class="negative-text">
+                        <i class="fa-solid fa-arrow-down"></i>
+                        8.2% this month
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+<div class="quick-actions">
+
+    <!-- SEND MONEY -->
+    <a href="transfer.html" class="quick-action">
+        <div class="quick-icon send">
+            <i class="fa-solid fa-paper-plane"></i>
+        </div>
+
+        <div>
+            <span>Send Money</span>
+            <small>Transfer funds</small>
+        </div>
+
+        <i class="fa-solid fa-chevron-right quick-arrow"></i>
+    </a>
+
+
+    <!-- RECEIVE MONEY -->
+    <a href="transfer.html" class="quick-action">
+        <div class="quick-icon receive">
+            <i class="fa-solid fa-download"></i>
+        </div>
+
+        <div>
+            <span>Receive Money</span>
+            <small>Get paid</small>
+        </div>
+
+        <i class="fa-solid fa-chevron-right quick-arrow"></i>
+    </a>
+
+
+    <!-- AIRTIME & DATA -->
+    <a href="payments.html" class="quick-action">
+        <div class="quick-icon airtime">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+        </div>
+
+        <div>
+            <span>Airtime & Data</span>
+            <small>Recharge instantly</small>
+        </div>
+
+        <i class="fa-solid fa-chevron-right quick-arrow"></i>
+    </a>
+
+
+    <!-- PAY BILLS -->
+    <a href="payments.html" class="quick-action">
+        <div class="quick-icon bills">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+        </div>
+
+        <div>
+            <span>Pay Bills</span>
+            <small>Pay your bills</small>
+        </div>
+
+        <i class="fa-solid fa-chevron-right quick-arrow"></i>
+    </a>
+
+
+    <!-- MANAGE CARD -->
+    <a href="my-card.html" class="quick-action">
+        <div class="quick-icon cards">
+            <i class="fa-solid fa-credit-card"></i>
+        </div>
+
+        <div>
+            <span>Manage Card</span>
+            <small>Card settings</small>
+        </div>
+
+        <i class="fa-solid fa-chevron-right quick-arrow"></i>
+    </a>
+
+</div>
+
+         <div class="dashboard-grid">
+            <!-- TRANSACTIONS -->
+
+            <div class="transactions content-panel">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            ACTIVITY
+                        </span>
+
+                        <h2>
+                            Recent Transactions
+                        </h2>
+
+                    </div>
+
+                    <a
+                        href="#"
+                        id="viewAllTransactions"
+                    >
+                        View All
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="transaction-list"
+                    id="transactionList"
+                >
+
+                    <div class="transaction">
+
+                        <div class="transaction-icon received">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+
+                        <div class="transaction-info">
+
+                            <strong>
+                                Salary Payment
+                            </strong>
+
+                            <small>
+                                Today, 10:42 AM
+                            </small>
+
+                        </div>
+
+                        <div class="transaction-right">
+
+                            <strong class="amount positive">
+                                +₦450,000
+                            </strong>
+
+                            <span class="completed">
+                                Completed
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="transaction">
+
+                        <div class="transaction-icon sent">
+                            <i class="fa-solid fa-arrow-up"></i>
+                        </div>
+
+                        <div class="transaction-info">
+
+                            <strong>
+                                Transfer to John
+                            </strong>
+
+                            <small>
+                                Yesterday, 4:20 PM
+                            </small>
+
+                        </div>
+
+                        <div class="transaction-right">
+
+                            <strong class="amount negative">
+                                -₦50,000
+                            </strong>
+
+                            <span class="completed">
+                                Completed
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="transaction">
+
+                        <div class="transaction-icon received">
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+
+                        <div class="transaction-info">
+
+                            <strong>
+                                Transfer Received
+                            </strong>
+
+                            <small>
+                                Aug 28, 2:15 PM
+                            </small>
+
+                        </div>
+
+                        <div class="transaction-right">
+
+                            <strong class="amount positive">
+                                +₦120,000
+                            </strong>
+
+                            <span class="completed">
+                                Completed
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="transaction">
+
+                        <div class="transaction-icon sent">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+
+                        <div class="transaction-info">
+
+                            <strong>
+                                Electricity Bill
+                            </strong>
+
+                            <small>
+                                Aug 27, 11:30 AM
+                            </small>
+
+                        </div>
+
+                        <div class="transaction-right">
+
+                            <strong class="amount negative">
+                                -₦35,500
+                            </strong>
+
+                            <span class="completed">
+                                Completed
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="transaction">
+
+                        <div class="transaction-icon sent">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                        </div>
+
+                        <div class="transaction-info">
+
+                            <strong>
+                                Airtime Purchase
+                            </strong>
+
+                            <small>
+                                Aug 26, 8:45 AM
+                            </small>
+
+                        </div>
+
+                        <div class="transaction-right">
+
+                            <strong class="amount negative">
+                                -₦10,000
+                            </strong>
+
+                            <span class="completed">
+                                Completed
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MY CARD -->
+
+            <div class="card-panel content-panel">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            PAYMENT
+                        </span>
+
+                        <h2>
+                            My Card
+                        </h2>
+
+                    </div>
+
+                    <a
+                        href="#"
+                        data-action="cards"
+                    >
+                        Manage
+                    </a>
+
+                </div>
+
+
+                <div class="bank-card">
+
+                    <div class="card-decoration one"></div>
+                    <div class="card-decoration two"></div>
+
+                    <div class="bank-card-top">
+
+                        <strong>
+                            Nexa<span>Bank</span>
+                        </strong>
+
+                        <i class="fa-solid fa-wifi"></i>
+
+                    </div>
+
+
+                    <div class="chip">
+                        <div></div>
+                    </div>
+
+
+                    <p class="card-number">
+                        4532&nbsp;&nbsp;8921&nbsp;&nbsp;6743&nbsp;&nbsp;2451
+                    </p>
+
+
+                    <div class="card-details">
+
+                        <div>
+
+                            <small>
+                                CARD HOLDER
+                            </small>
+
+                            <strong>
+                                ALBERT PECO
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <small>
+                                EXPIRES
+                            </small>
+
+                            <strong>
+                                08/29
+                            </strong>
+
+                        </div>
+
+                        <div class="visa">
+                            VISA
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-status">
+
+                    <div>
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        <div>
+
+                            <strong>
+                                Card Active
+                            </strong>
+
+                            <small>
+                                Ready for transactions
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                    <button data-action="cards">
+                        Manage
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+        </div>
+
+
+        <!-- =================================================
+             SPENDING OVERVIEW
+        ================================================= -->
+
+        <section class="overview-section dashboard-reveal">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        FINANCIAL OVERVIEW
+                    </span>
+
+                    <h2>
+                        Monthly Spending
+                    </h2>
+
+                </div>
+
+                <button class="period-btn">
+
+                    This Month
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+            </div>
+
+
+            <div class="overview-card">
+
+                <div class="overview-summary">
+
+                    <span>
+                        Total spent
+                    </span>
+
+                    <strong>
+                        ₦320,500
+                    </strong>
+
+                    <small>
+                        <i class="fa-solid fa-arrow-down"></i>
+                        8.2% less than last month
+                    </small>
+
+                </div>
+
+
+                <div class="progress-group">
+
+                    <div class="progress-item">
+
+                        <div>
+                            <span>Bills</span>
+                            <strong>₦120,500</strong>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:72%;"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-item">
+
+                        <div>
+                            <span>Shopping</span>
+                            <strong>₦85,000</strong>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:50%;"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-item">
+
+                        <div>
+                            <span>Transport</span>
+                            <strong>₦65,000</strong>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:38%;"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-item">
+
+                        <div>
+                            <span>Other</span>
+                            <strong>₦50,000</strong>
+                        </div>
+
+                        <div class="progress">
+                            <span style="width:29%;"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>
+

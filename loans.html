@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./images/ChatGPT Image Sep 3, 2026, 07_58_11 PM.png" type="image/x-icon">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Loans | NexaBank</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="index.html" class="logo">
+            <span class="logo-mark"><img src="./images/ChatGPT Image Sep 3, 2026, 07_58_11 PM.png" alt="NexaBank Logo"></span>
+            Nexa<span>Bank</span>
+        </a>
+         <div class="nav-controls">
+
+    <!-- Nigeria -->
+    <div class="country-selector">
+        <span class="country-flag">🇳🇬</span>
+       
+    </div>
+
+    <!-- Light / Dark Mode -->
+    <button
+        type="button"
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Toggle light and dark mode"
+        title="Toggle theme"
+    >
+        <span id="themeIcon">🌙</span>
+    </button>
+
+</div>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-menu" id="navMenu">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="accounts.html">
+                Accounts
+            </a>
+
+            <a href="loans.html" class="active">
+                Loans
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a
+                href="open-account.html"
+                class="nav-button"
+            >
+                Open Account
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="page-hero">
+
+        <div class="page-hero-content reveal">
+
+            <span class="eyebrow">
+                Financing your ambitions
+            </span>
+
+            <h1>
+                When opportunity
+                <span>knocks, be ready.</span>
+            </h1>
+
+            <p>
+                Explore flexible financing options designed to
+                support your personal and business goals.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="section-heading reveal">
+
+            <span class="eyebrow">
+                Financing solutions
+            </span>
+
+            <h2>
+                A little help for
+                <span>big plans.</span>
+            </h2>
+
+            <p>
+                Choose a financing solution that fits your needs.
+            </p>
+
+        </div>
+
+
+        <div class="loan-grid">
+
+            <article class="loan-card reveal">
+
+                <div class="loan-icon">
+                    ◇
+                </div>
+
+                <h3>
+                    Personal Loan
+                </h3>
+
+                <p>
+                    Funding for personal projects, unexpected
+                    expenses and important life moments.
+                </p>
+
+                <a href="contact.html">
+                    Learn more →
+                </a>
+
+            </article>
+
+
+            <article class="loan-card reveal">
+
+                <div class="loan-icon">
+                    ◆
+                </div>
+
+                <h3>
+                    Business Loan
+                </h3>
+
+                <p>
+                    Give your business room to grow with flexible
+                    financing designed for entrepreneurs.
+                </p>
+
+                <a href="contact.html">
+                    Learn more →
+                </a>
+
+            </article>
+
+
+            <article class="loan-card reveal">
+
+                <div class="loan-icon">
+                    □
+                </div>
+
+                <h3>
+                    Asset Financing
+                </h3>
+
+                <p>
+                    Finance important business assets and equipment
+                    without putting your growth on hold.
+                </p>
+
+                <a href="contact.html">
+                    Learn more →
+                </a>
+
+            </article>
+
+
+            <article class="loan-card reveal">
+
+                <div class="loan-icon">
+                    $
+                </div>
+
+                <h3>
+                    Salary Advance
+                </h3>
+
+                <p>
+                    Access convenient short-term support when
+                    unexpected needs arise.
+                </p>
+
+                <a href="contact.html">
+                    Learn more →
+                </a>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <section class="loan-calculator-section">
+
+        <div class="calculator-info reveal">
+
+            <span class="eyebrow">
+                Plan ahead
+            </span>
+
+            <h2>
+                Estimate your
+                <span>monthly payment.</span>
+            </h2>
+
+            <p>
+                Use our simple calculator to get an
+                illustrative estimate of your monthly payment.
+            </p>
+
+        </div>
+
+
+        <div class="loan-calculator reveal">
+
+            <div class="input-group">
+
+                <label for="loanAmount">
+                    Loan Amount
+                </label>
+
+                <input
+                    type="number"
+                    id="loanAmount"
+                    value="1000000"
+                    min="1000"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="loanRate">
+                    Annual Interest Rate (%)
+                </label>
+
+                <input
+                    type="number"
+                    id="loanRate"
+                    value="15"
+                    min="0"
+                    step="0.1"
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="loanTerm">
+                    Term (months)
+                </label>
+
+                <input
+                    type="number"
+                    id="loanTerm"
+                    value="12"
+                    min="1"
+                >
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                id="calculateLoan"
+            >
+                Calculate
+            </button>
+
+
+            <div class="calculator-result">
+
+                <small>
+                    Estimated Monthly Payment
+                </small>
+
+                <strong id="monthlyPayment">
+                    ₦0.00
+                </strong>
+
+                
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+
+            <a href="index.html" class="logo footer-logo">
+                <span class="logo-mark"><img src="./images/ChatGPT Image Sep 3, 2026, 07_58_11 PM.png" alt="NexaBank Logo"></span>
+                Nexa<span>Bank</span>
+            </a>
+
+            <p>
+                Banking made simple, secure and built around
+                your future.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Company</h4>
+
+            <a href="about.html">About us</a>
+            <a href="contact.html">Careers</a>
+            <a href="privacy-terms.html">News</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Banking</h4>
+
+            <a href="accounts.html">Accounts</a>
+            <a href="loans.html">Loans</a>
+            <a href="open-account.html">Cards</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Support</h4>
+
+            <a href="contact.html">Contact us</a>
+            <a href="privacy-terms.html">Help Centre</a>
+            <a href="privacy-terms.html">FAQs</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 NexaBank.
+        </p>
+
+        <div>
+            <a href="privacy-terms.html">Privacy</a>
+            <a href="privacy-terms.html">Terms</a>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<button
+    class="back-top"
+    id="backTop"
+>
+    ↑
+</button>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

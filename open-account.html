@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./images/ChatGPT Image Sep 3, 2026, 07_58_11 PM.png" type="image/x-icon">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Open an Account | NexaBank</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <a href="index.html" class="logo">
+            <span class="logo-mark"><img src="./images/ChatGPT Image Sep 3, 2026, 07_58_11 PM.png" alt="NexaBank Logo"></span>
+            Nexa<span>Bank</span>
+        </a>
+         <div class="nav-controls">
+
+    <!-- Nigeria -->
+    <div class="country-selector">
+        <span class="country-flag">🇳🇬</span>
+       
+    </div>
+
+    <!-- Light / Dark Mode -->
+    <button
+        type="button"
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Toggle light and dark mode"
+        title="Toggle theme"
+    >
+        <span id="themeIcon">🌙</span>
+    </button>
+
+</div>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-menu" id="navMenu">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="accounts.html">
+                Accounts
+            </a>
+
+            <a href="loans.html">
+                Loans
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+            <a
+                href="open-account.html"
+                class="nav-button active-button"
+            >
+                Open Account
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<!-- LOGIN MODAL -->
+
+<div
+    class="login-modal"
+    id="loginModal"
+    aria-hidden="true"
+>
+
+    <!-- Dark background -->
+    <div
+        class="login-overlay"
+        id="loginOverlay"
+    ></div>
+
+
+    <!-- Login box -->
+    <div
+        class="login-card"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="loginTitle"
+    >
+
+        <!-- Close button -->
+        <button
+            type="button"
+            class="login-close"
+            id="closeLogin"
+            aria-label="Close login"
+        >
+            &times;
+        </button>
+
+
+        <!-- Login heading -->
+        <div class="login-header">
+           
+                
+           <div class="login-welcome">
+            <span class="login-icon">
+                <img src="./images/ChatGPT Image Sep 3, 2026, 07_58_11 PM.png" alt="Login Icon">
+            </span>
+           </div>
+           
+
+            <h2 id="loginTitle">
+                Welcome back
+            </h2>
+
+            <p>
+                Log in to your NexaBank account.
+            </p>
+
+        </div>
+
+
+        <!-- LOGIN FORM -->
+        <form
+            id="loginForm"
+            class="login-form"
+            novalidate
+        >
+
+            <!-- Email -->
+            <div class="input-group">
+
+                <label for="loginEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    name="loginEmail"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                >
+
+                <small
+                    class="login-error"
+                    id="loginEmailError"
+                ></small>
+
+            </div>
+
+
+            <!-- Password -->
+            <div class="input-group">
+
+                <label for="loginPassword">
+                    Password
+                </label>
+
+
+                <div class="password-field">
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        name="loginPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        id="toggleLoginPassword"
+                    >
+                        Show
+                    </button>
+
+                </div>
+
+
+                <small
+                    class="login-error"
+                    id="loginPasswordError"
+                ></small>
+
+            </div>
+
+
+            <!-- Remember / Forgot -->
+            <div class="login-options">
+
+                <label class="remember-me">
+
+                    <input
+                        type="checkbox"
+                        id="rememberMe"
+                    >
+
+                    <span>
+                        Remember me
+                    </span>
+
+                </label>
+
+
+                <a
+                    href="#"
+                    id="forgotPassword"
+                >
+                    Forgot password?
+                </a>
+
+            </div>
+
+
+            <!-- Login button -->
+            <button
+                type="submit"
+                class="btn btn-primary login-submit"
+            >
+                Login
+                <span>→</span>
+            </button>
+
+
+            <!-- Demo notice -->
+            <p class="login-demo-note">
+
+                Frontend demonstration only.
+                No real banking credentials are processed
+                or stored.
+
+            </p>
+
+
+            <!-- Message -->
+            <div
+                class="login-message"
+                id="loginMessage"
+                role="status"
+            ></div>
+
+        </form>
+
+    </div>
+
+</div>
+<main>
+
+    <section class="page-hero compact">
+
+        <div class="page-hero-content reveal">
+
+            <span class="eyebrow">
+                Get started
+            </span>
+
+            <h1>
+                Open your account
+                <span>in minutes.</span>
+            </h1>
+
+            <p>
+                Complete this demonstration form to experience
+                our simple account-opening journey.
+            </p>
+
+        </div>
+
+    </section>
+    <!-- LOGIN PROMPT -->
+<section class="login-prompt-section">
+
+    <div class="login-prompt reveal">
+
+        <div class="login-prompt-content">
+
+            <span class="eyebrow">
+                Already a customer?
+            </span>
+
+            <h2>
+                Already have a NexaBank account?
+            </h2>
+
+            <p>
+                Log in to your account to continue to your
+                banking dashboard.
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn btn-primary login-trigger"
+            id="openLogin"
+        >
+            Login to your account
+            <span>→</span>
+        </button>
+
+    </div>
+
+</section>
+
+    <section class="section form-section">
+
+        <div class="form-intro reveal">
+
+            <span class="eyebrow">
+                Account application
+            </span>
+
+            <h2>
+                Let's get to
+                <span>know you.</span>
+            </h2>
+
+            <p>
+                Fill in your details below. 
+            </p>
+
+            <div class="form-benefits">
+
+                <div>
+                    <span>✓</span>
+                    Simple application
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Secure design
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Easy to complete
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <form
+            class="account-form reveal"
+            id="accountForm"
+        >
+
+            <div class="progress-container">
+
+                <div class="progress-step active">
+                    <span>1</span>
+                    Personal
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <span>2</span>
+                    Contact
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <span>3</span>
+                    Complete
+                </div>
+
+            </div>
+
+
+            <!-- STEP 1 -->
+
+            <div
+                class="form-step active"
+                data-step="1"
+            >
+
+                <h3>
+                    Personal information
+                </h3>
+
+                <p>
+                    Tell us a little about yourself.
+                </p>
+
+
+                <div class="form-row">
+
+                    <div class="input-group">
+
+                        <label for="firstName">
+                            First Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            placeholder="First name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="input-group">
+
+                        <label for="lastName">
+                            Last Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            placeholder="Last name"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="dob">
+                        Date of Birth
+                    </label>
+
+                    <input
+                        type="date"
+                        id="dob"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="accountType">
+                        Account Type
+                    </label>
+
+                    <select
+                        id="accountType"
+                        required
+                    >
+
+                        <option value="">
+                            Select account type
+                        </option>
+
+                        <option value="savings">
+                            Smart Savings
+                        </option>
+
+                        <option value="advantage">
+                            Advantage Account
+                        </option>
+
+                        <option value="business">
+                            Business Plus
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary next-step"
+                >
+                    Continue
+                    <span>→</span>
+                </button>
+
+            </div>
+
+
+            <!-- STEP 2 -->
+
+            <div
+                class="form-step"
+                data-step="2"
+            >
+
+                <h3>
+                    Contact information
+                </h3>
+
+                <p>
+                    How can we reach you?
+                </p>
+
+
+                <div class="input-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="you@example.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="+234 800 000 0000"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="city">
+                        City
+                    </label>
+
+                    <input
+                        type="text"
+                        id="city"
+                        placeholder="Your city"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-buttons">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary prev-step"
+                    >
+                        ← Back
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-primary next-step"
+                    >
+                        Continue
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 3 -->
+
+            <div
+                class="form-step"
+                data-step="3"
+            >
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Application ready!
+                </h3>
+
+                <p>
+                    Your application has been completed
+                    successfully.
+                </p>
+
+               
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Finish Application
+                    <span>→</span>
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+
+            <a href="index.html" class="logo footer-logo">
+                <span class="logo-mark"><img src="./images/ChatGPT Image Sep 3, 2026, 07_58_11 PM.png" alt="NexaBank Logo"></span>
+                Nexa<span>Bank</span>
+            </a>
+
+            <p>
+                Banking made simple, secure and built around
+                your future.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Company</h4>
+
+            <a href="about.html">About us</a>
+            <a href="contact.html">Careers</a>
+            <a href="privacy-terms.html">News</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Banking</h4>
+
+            <a href="accounts.html">Accounts</a>
+            <a href="loans.html">Loans</a>
+            <a href="open-account.html">Cards</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Support</h4>
+
+            <a href="contact.html">Contact us</a>
+            <a href="privacy-terms.html">Help Centre</a>
+            <a href="privacy-terms.html">FAQs</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 NexaBank.
+        </p>
+
+        <div>
+            <a href="privacy-terms.html">Privacy</a>
+            <a href="privacy-terms.html">Terms</a>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

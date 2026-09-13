@@ -1,0 +1,1842 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/ChatGPT Image Sep 3, 2026, 07_58_11 PM.png" type="image/x-icon">
+    <meta
+        name="description"
+        content="NexaBank secure money transfer page."
+    >
+
+    <title>NexaBank | Transfer Money</title>
+
+    <!-- Main Dashboard CSS -->
+    <link rel="stylesheet" href="dashboard.css">
+
+    <!-- Transfer Page CSS -->
+    <link rel="stylesheet" href="transfer.css">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+</head>
+<!-- =========================================
+     NEXA AI ASSISTANT
+========================================= -->
+
+<button class="nexa-ai-button" id="nexaAiButton" aria-label="Open Nexa AI">
+
+    <i class="fa-solid fa-robot"></i>
+
+    <span class="nexa-ai-pulse"></span>
+
+</button>
+
+
+<div class="nexa-ai-chat" id="nexaAiChat">
+
+    <!-- HEADER -->
+
+    <div class="nexa-ai-header">
+
+        <div class="nexa-ai-title">
+
+            <div class="nexa-ai-avatar">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <div>
+                <strong>Nexa AI</strong>
+
+                <span>
+                    <i class="fa-solid fa-circle"></i>
+                    Online
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="nexa-ai-header-actions">
+
+            <button id="nexaClearChat" title="Clear chat">
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+            <button id="nexaCloseChat" title="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CHAT BODY -->
+
+    <div class="nexa-ai-messages" id="nexaAiMessages">
+
+        <!-- Welcome message is inserted by JavaScript -->
+
+    </div>
+
+
+    <!-- QUICK QUESTIONS -->
+
+    <div class="nexa-ai-suggestions" id="nexaAiSuggestions">
+
+        <button data-question="How do I transfer money?">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            Transfer money
+        </button>
+
+        <button data-question="Show me my transactions">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Transactions
+        </button>
+
+        <button data-question="Tell me about my card">
+            <i class="fa-solid fa-credit-card"></i>
+            My card
+        </button>
+
+        <button data-question="I need help">
+            <i class="fa-solid fa-circle-question"></i>
+            Get help
+        </button>
+
+    </div>
+
+
+    <!-- INPUT -->
+
+    <div class="nexa-ai-input-area">
+
+        <input
+            type="text"
+            id="nexaAiInput"
+            placeholder="Ask Nexa AI..."
+            autocomplete="off"
+        >
+
+        <button id="nexaAiSend" aria-label="Send message">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+        </button>
+
+    </div>
+
+
+    <div class="nexa-ai-footer">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        Nexa AI is a frontend demonstration
+
+    </div>
+
+</div>
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="dashboard-header">
+
+    <a href="index.html" class="logo">
+        Nexa<span>Bank</span>
+    </a>
+
+    <div class="header-right">
+
+        <!-- Search -->
+        <div class="header-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                placeholder="Search..."
+            >
+        </div>
+
+
+        <!-- Theme -->
+        <button
+            class="header-icon"
+            id="themeToggle"
+            aria-label="Toggle dark mode"
+            title="Toggle dark mode"
+        >
+            <i class="fa-solid fa-moon"></i>
+        </button>
+
+
+        <!-- Notifications -->
+        <button
+            class="notification"
+            id="notificationBtn"
+            aria-label="Notifications"
+        >
+            <i class="fa-regular fa-bell"></i>
+
+            <span class="notification-dot"></span>
+        </button>
+
+
+        <!-- Profile -->
+        <div class="profile">
+
+            <div class="profile-image">
+                A
+            </div>
+
+            <div class="profile-info">
+
+                <strong>Albert</strong>
+
+                <small>
+                    Personal Account
+                </small>
+
+            </div>
+
+            <i class="fa-solid fa-chevron-down profile-arrow"></i>
+
+        </div>
+
+
+        <!-- Mobile Menu -->
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Open menu"
+        >
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-content">
+
+        <div class="sidebar-label">
+            MAIN MENU
+        </div>
+
+
+        <nav>
+
+            <a href="dashboard.html">
+
+                <i class="fa-solid fa-house"></i>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a
+                href="transfer.html"
+                class="active"
+            >
+
+                <i class="fa-solid fa-money-bill-transfer"></i>
+
+                <span>
+                    Transfer
+                </span>
+
+            </a>
+
+
+            <a href="transfer.html">
+
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+
+                <span>
+                    Receive Money
+                </span>
+
+            </a>
+
+
+            <a href="payments.html">
+
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+
+                <span>
+                    Bill Payments
+                </span>
+
+            </a>
+
+
+            <a href="airtime-data.html">
+
+                <i class="fa-solid fa-mobile-screen-button"></i>
+
+                <span>
+                    Airtime & Data
+                </span>
+
+            </a>
+
+
+            <a href="transactions.html">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                <span>
+                    Transactions
+                </span>
+
+            </a>
+
+
+            <a href="my-card.html">
+
+                <i class="fa-solid fa-credit-card"></i>
+
+                <span>
+                    My Cards
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-label second-label">
+            ACCOUNT
+        </div>
+
+
+        <nav>
+
+            <a href="profile.html">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>
+                    Profile
+                </span>
+
+            </a>
+
+
+            <a href="settings.html">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+
+            <a href="support.html">
+
+                <i class="fa-solid fa-circle-question"></i>
+
+                <span>
+                    Help & Support
+                </span>
+
+            </a>
+
+        </nav>
+
+    </div>
+
+
+    <!-- Security -->
+
+    <div class="security-card">
+
+        <div class="security-icon">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+        </div>
+
+        <div>
+
+            <strong>
+                Your account is secure
+            </strong>
+
+            <p>
+                Last checked today
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Logout -->
+
+    <button
+        class="logout-btn"
+        id="logoutBtn"
+    >
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        <span>
+            Logout
+        </span>
+
+    </button>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="dashboard">
+
+    <div class="dashboard-inner transfer-page">
+
+
+        <!-- =================================================
+             PAGE HEADER
+        ================================================= -->
+
+        <section class="transfer-header">
+
+            <div>
+
+                <span class="transfer-label">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    MONEY TRANSFER
+
+                </span>
+
+                <h1>
+                    Transfer Money
+                </h1>
+
+                <p>
+                    Send money securely to another bank account
+                    or NexaBank customer.
+                </p>
+
+            </div>
+
+
+            <a
+                href="dashboard.html"
+                class="transfer-back"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Dashboard
+
+            </a>
+
+        </section>
+
+
+
+        <!-- =================================================
+             TRANSFER LAYOUT
+        ================================================= -->
+
+        <section class="transfer-layout">
+
+
+            <!-- =================================================
+                 TRANSFER FORM
+            ================================================= -->
+
+            <div class="transfer-form-card">
+
+
+                <div class="transfer-card-header">
+
+                    <div>
+
+                        <span class="section-label">
+                            SEND MONEY
+                        </span>
+
+                        <h2>
+                            Transfer Details
+                        </h2>
+
+                    </div>
+
+
+                    <div class="secure-badge">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        Secure
+
+                    </div>
+
+                </div>
+
+
+                <form id="transferForm">
+
+
+                    <!-- Transfer Type -->
+
+                    <div class="transfer-type">
+
+                        <button
+                            type="button"
+                            class="transfer-type-btn active"
+                        >
+
+                            <i class="fa-solid fa-building-columns"></i>
+
+                            <span>
+                                Bank Transfer
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="transfer-type-btn"
+                        >
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <span>
+                                NexaBank User
+                            </span>
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- Account Number -->
+
+                    <div class="transfer-field">
+
+                        <label for="accountNumber">
+                            Recipient Account Number
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input
+                                type="text"
+                                id="accountNumber"
+                                placeholder="Enter 10-digit account number"
+                                maxlength="10"
+                                required
+                            >
+
+                        </div>
+
+                        <small class="field-hint">
+                            Enter the recipient's bank account number.
+                        </small>
+
+                    </div>
+
+
+
+                    <!-- Bank -->
+
+                    <div class="transfer-field">
+
+                        <label for="bankName">
+                            Recipient Bank
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-building-columns"></i>
+
+                            <select
+                                id="bankName"
+                                required
+                            >
+
+                                <option value="">
+                                    Select recipient bank
+                                </option>
+
+                                <option>
+                                    OPAY
+                                </option>
+
+                                <option>
+                                    NexaBank
+                                </option>
+
+                                <option>
+                                    Access Bank
+                                </option>
+
+                                <option>
+                                    GTBank
+                                </option>
+
+                                <option>
+                                    First Bank
+                                </option>
+
+                                <option>
+                                    Zenith Bank
+                                </option>
+
+                                <option>
+                                    UBA
+                                </option>
+
+                                <option>
+                                    Fidelity Bank
+                                </option>
+
+                                <option>
+                                    Stanbic IBTC
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Recipient -->
+
+                    <div class="transfer-field">
+
+                        <label for="recipientName">
+                            Recipient Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <i class="fa-solid fa-user-check"></i>
+
+                            <input
+                                type="text"
+                                id="recipientName"
+                                placeholder="Recipient name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Amount -->
+
+                    <div class="transfer-field">
+
+                        <div class="field-label-row">
+
+                            <label for="transferAmount">
+                                Amount
+                            </label>
+
+                            <span>
+                                Available:
+                                <strong>
+                                    ₦2,450,000.00
+                                </strong>
+                            </span>
+
+                        </div>
+
+
+                        <div class="amount-wrapper">
+
+                            <span>
+                                ₦
+                            </span>
+
+                            <input
+                                type="number"
+                                id="transferAmount"
+                                placeholder="0.00"
+                                min="1"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="quick-amounts">
+
+                            <button
+                                type="button"
+                                data-amount="10000"
+                            >
+                                ₦10,000
+                            </button>
+
+                            <button
+                                type="button"
+                                data-amount="50000"
+                            >
+                                ₦50,000
+                            </button>
+
+                            <button
+                                type="button"
+                                data-amount="100000"
+                            >
+                                ₦100,000
+                            </button>
+
+                            <button
+                                type="button"
+                                data-amount="500000"
+                            >
+                                ₦500,000
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Description -->
+
+                    <div class="transfer-field">
+
+                        <label for="transferNote">
+                            Transfer Description
+                            <span>
+                                Optional
+                            </span>
+                        </label>
+
+                        <div class="input-wrapper textarea-wrapper">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                            <textarea
+                                id="transferNote"
+                                placeholder="What is this transfer for?"
+                                maxlength="120"
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Security -->
+
+                    <div class="transfer-security">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <div>
+
+                            <strong>
+                                Your transfer is protected
+                            </strong>
+
+                            <p>
+                                NexaBank uses secure encryption
+                                to protect your transaction.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        class="transfer-submit"
+                    >
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                        Continue Transfer
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RIGHT COLUMN
+            ================================================= -->
+
+            <div class="transfer-sidebar">
+
+
+                <!-- Balance -->
+
+                <div class="mini-balance-card">
+
+                    <div class="mini-balance-top">
+
+                        <span>
+                            Available Balance
+                        </span>
+
+                        <i class="fa-solid fa-wallet"></i>
+
+                    </div>
+
+                    <h2>
+                        ₦2,450,000.00
+                    </h2>
+
+                    <p>
+                        Personal Account
+                    </p>
+
+                </div>
+
+
+
+                <!-- Recent Beneficiaries -->
+
+                <div class="beneficiary-card">
+
+                    <div class="beneficiary-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                SAVED
+                            </span>
+
+                            <h3>
+                                Recent Beneficiaries
+                            </h3>
+
+                        </div>
+
+                        <button
+                            aria-label="Add beneficiary"
+                            title="Add beneficiary"
+                        >
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="beneficiary-list">
+
+
+                        <button class="beneficiary">
+
+                            <div class="beneficiary-avatar">
+                                J
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    John Mark
+                                </strong>
+
+                                <small>
+                                    GTBank •••• 7821
+                                </small>
+
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </button>
+
+
+                        <button class="beneficiary">
+
+                            <div class="beneficiary-avatar">
+                                S
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Sarah James
+                                </strong>
+
+                                <small>
+                                    NexaBank •••• 3145
+                                </small>
+
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </button>
+
+
+                        <button class="beneficiary">
+
+                            <div class="beneficiary-avatar">
+                                D
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    David Peter
+                                </strong>
+
+                                <small>
+                                    Zenith •••• 9087
+                                </small>
+
+                            </div>
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Transfer Information -->
+
+                <div class="transfer-info-card">
+
+                    <div class="info-icon">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Transfer Information
+                        </strong>
+
+                        <p>
+                            Review the recipient details carefully
+                            before confirming your transfer.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     TRANSFER SUCCESS MODAL
+===================================================== -->
+
+<div
+    class="transfer-modal"
+    id="transferModal"
+>
+
+    <div class="transfer-modal-content">
+
+        <button
+            class="transfer-modal-close"
+            id="closeTransferModal"
+        >
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+
+        <div class="success-icon">
+
+            <i class="fa-solid fa-check"></i>
+
+        </div>
+
+
+        <span class="section-label">
+            NEXABANK
+        </span>
+
+        <h2>
+            Transfer Ready
+        </h2>
+
+        <p>
+            This is a frontend demonstration. No real money
+            will be transferred.
+        </p>
+
+
+        <div class="transfer-preview">
+
+            <div>
+
+                <span>
+                    Recipient
+                </span>
+
+                <strong id="previewRecipient">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Amount
+                </span>
+
+                <strong id="previewAmount">
+                    ₦0.00
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="modal-transfer-btn"
+            id="confirmTransfer"
+        >
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            Confirm Demo Transfer
+
+        </button>
+
+
+        <small>
+            <i class="fa-solid fa-lock"></i>
+            Frontend demonstration only.
+        </small>
+
+    </div>
+
+</div>
+```html
+<!-- ================= TRANSACTION RECEIPT MODAL ================= -->
+<div class="receipt-modal" id="receiptModal">
+    <div class="receipt-container">
+
+        <button class="receipt-close" id="receiptClose">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <!-- Success Header -->
+        <div class="receipt-success">
+            <div class="receipt-success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+
+            <h2>Transfer Successful</h2>
+            <p>Your transfer has been completed successfully.</p>
+        </div>
+
+        <!-- Amount -->
+        <div class="receipt-amount">
+            <span>Amount Transferred</span>
+            <strong id="receiptAmount">₦0.00</strong>
+        </div>
+
+        <!-- Transaction Details -->
+        <div class="receipt-details">
+
+            <div class="receipt-row">
+                <span>Recipient</span>
+                <strong id="receiptRecipient">—</strong>
+            </div>
+
+            <div class="receipt-row">
+                <span>Account Number</span>
+                <strong id="receiptAccount">—</strong>
+            </div>
+
+            <div class="receipt-row">
+                <span>Bank</span>
+                <strong id="receiptBank">—</strong>
+            </div>
+
+            <div class="receipt-row">
+                <span>Description</span>
+                <strong id="receiptNote">—</strong>
+            </div>
+
+            <div class="receipt-row">
+                <span>Date & Time</span>
+                <strong id="receiptDate">—</strong>
+            </div>
+
+            <div class="receipt-row">
+                <span>Transaction Reference</span>
+                <strong class="receipt-reference" id="receiptReference">
+                    —
+                </strong>
+            </div>
+
+            <div class="receipt-row">
+                <span>Status</span>
+                <strong>
+                    <span class="receipt-status">
+                        <i class="fas fa-check-circle"></i>
+                        Successful
+                    </span>
+                </strong>
+            </div>
+
+        </div>
+
+        <!-- Demo Notice -->
+        <div class="receipt-demo-note">
+            <i class="fas fa-info-circle"></i>
+
+            <p>
+                This is a frontend demonstration.
+                No real money was transferred.
+            </p>
+        </div>
+
+        <!-- Receipt Actions -->
+        <div class="receipt-actions">
+
+            <button type="button"
+                    class="receipt-action-btn"
+                    id="downloadReceipt">
+
+                <i class="fas fa-download"></i>
+                Download Receipt
+
+            </button>
+
+            <button type="button"
+                    class="receipt-action-btn"
+                    id="shareReceipt">
+
+                <i class="fas fa-share-alt"></i>
+                Share Receipt
+
+            </button>
+
+        </div>
+
+        <!-- Bottom Actions -->
+        <div class="receipt-footer">
+
+            <button type="button"
+                    class="receipt-dashboard-btn"
+                    id="backDashboard">
+
+                <i class="fas fa-home"></i>
+                Dashboard
+
+            </button>
+
+            <button type="button"
+                    class="receipt-another-btn"
+                    id="anotherTransfer">
+
+                <i class="fas fa-exchange-alt"></i>
+                Another Transfer
+
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<script>
+
+    /* ================================================
+       MOBILE MENU
+    ================================================ */
+
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const sidebar =
+        document.getElementById("sidebar");
+
+
+    if (menuButton && sidebar) {
+
+        menuButton.addEventListener("click", () => {
+
+            sidebar.classList.toggle("show");
+
+            const icon =
+                menuButton.querySelector("i");
+
+            if (sidebar.classList.contains("show")) {
+
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-xmark");
+
+            } else {
+
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+
+            }
+
+        });
+
+    }
+
+
+
+    /* ================================================
+       QUICK AMOUNTS
+    ================================================ */
+
+    const amountInput =
+        document.getElementById("transferAmount");
+
+    const quickAmounts =
+        document.querySelectorAll("[data-amount]");
+
+
+    quickAmounts.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            amountInput.value =
+                button.dataset.amount;
+
+        });
+
+    });
+
+
+
+    /* ================================================
+       TRANSFER FORM
+    ================================================ */
+
+    const transferForm =
+        document.getElementById("transferForm");
+
+    const transferModal =
+        document.getElementById("transferModal");
+
+    const previewRecipient =
+        document.getElementById("previewRecipient");
+
+    const previewAmount =
+        document.getElementById("previewAmount");
+
+
+    if (transferForm) {
+
+        transferForm.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+
+                const recipient =
+                    document.getElementById(
+                        "recipientName"
+                    ).value;
+
+
+                const amount =
+                    amountInput.value;
+
+
+                if (!recipient || !amount) {
+
+                    alert(
+                        "Please complete the transfer details."
+                    );
+
+                    return;
+
+                }
+
+
+                previewRecipient.textContent =
+                    recipient;
+
+
+                previewAmount.textContent =
+                    "₦" +
+                    Number(amount).toLocaleString(
+                        "en-NG",
+                        {
+                            minimumFractionDigits: 2
+                        }
+                    );
+
+
+                transferModal.classList.add("show");
+
+                document.body.style.overflow =
+                    "hidden";
+
+            }
+        );
+
+    }
+
+
+
+    /* ================================================
+       CLOSE MODAL
+    ================================================ */
+
+    const closeTransferModal =
+        document.getElementById(
+            "closeTransferModal"
+        );
+
+
+    if (closeTransferModal) {
+
+        closeTransferModal.addEventListener(
+            "click",
+            () => {
+
+                transferModal.classList.remove("show");
+
+                document.body.style.overflow = "";
+
+            }
+        );
+
+    }
+
+
+
+    /* ================================================
+       CONFIRM DEMO
+    ================================================ */
+
+   
+/* =========================================================
+   CONFIRM TRANSFER → TRANSACTION RECEIPT
+========================================================= */
+
+const receiptModal = document.getElementById("receiptModal");
+
+const receiptClose = document.getElementById("receiptClose");
+
+const receiptAmount = document.getElementById("receiptAmount");
+const receiptRecipient = document.getElementById("receiptRecipient");
+const receiptAccount = document.getElementById("receiptAccount");
+const receiptBank = document.getElementById("receiptBank");
+const receiptNote = document.getElementById("receiptNote");
+const receiptDate = document.getElementById("receiptDate");
+const receiptReference = document.getElementById("receiptReference");
+
+const downloadReceipt = document.getElementById("downloadReceipt");
+const shareReceipt = document.getElementById("shareReceipt");
+
+const backDashboard = document.getElementById("backDashboard");
+const anotherTransfer = document.getElementById("anotherTransfer");
+
+
+if (confirmTransfer) {
+
+    confirmTransfer.addEventListener("click", function () {
+
+        /* Generate unique demo transaction reference */
+        const reference =
+            "NXB-" +
+            Date.now().toString(36).toUpperCase() +
+            "-" +
+            Math.floor(1000 + Math.random() * 9000);
+
+        /* Current date and time */
+        const now = new Date();
+
+        const formattedDate = now.toLocaleString("en-NG", {
+            dateStyle: "medium",
+            timeStyle: "short"
+        });
+
+        /* Format amount */
+        const amountValue = Number(transferAmount.value);
+
+        const formattedAmount =
+            `₦${amountValue.toLocaleString("en-NG", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })}`;
+
+        /* Fill receipt */
+        receiptAmount.textContent = formattedAmount;
+
+        receiptRecipient.textContent =
+            recipientName.value.trim() || "NexaBank User";
+
+        receiptAccount.textContent =
+            accountNumber.value.trim() || "—";
+
+        receiptBank.textContent =
+            bankName.value.trim() || "NexaBank";
+
+        receiptNote.textContent =
+            transferNote.value.trim() || "Transfer";
+
+        receiptDate.textContent = formattedDate;
+
+        receiptReference.textContent = reference;
+
+        /* Close confirmation modal */
+        transferModal.classList.remove("show");
+
+        /* Open receipt */
+        setTimeout(() => {
+            receiptModal.classList.add("show");
+        }, 200);
+
+    });
+
+}
+
+
+/* =========================================================
+   CLOSE RECEIPT
+========================================================= */
+
+if (receiptClose) {
+
+    receiptClose.addEventListener("click", function () {
+        receiptModal.classList.remove("show");
+    });
+
+}
+
+
+/* =========================================================
+   CLICK OUTSIDE RECEIPT
+========================================================= */
+
+if (receiptModal) {
+
+    receiptModal.addEventListener("click", function (event) {
+
+        if (event.target === receiptModal) {
+            receiptModal.classList.remove("show");
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   DOWNLOAD RECEIPT
+========================================================= */
+
+if (downloadReceipt) {
+
+    downloadReceipt.addEventListener("click", function () {
+
+        const receiptText = `
+NEXABANK
+TRANSACTION RECEIPT
+================================
+
+Status: Successful
+
+Amount Transferred:
+${receiptAmount.textContent}
+
+Recipient:
+${receiptRecipient.textContent}
+
+Account Number:
+${receiptAccount.textContent}
+
+Bank:
+${receiptBank.textContent}
+
+Description:
+${receiptNote.textContent}
+
+Date & Time:
+${receiptDate.textContent}
+
+Transaction Reference:
+${receiptReference.textContent}
+
+================================
+Frontend Demonstration
+No real money was transferred.
+        `.trim();
+
+        const blob = new Blob(
+            [receiptText],
+            { type: "text/plain" }
+        );
+
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+
+        link.href = url;
+
+        link.download =
+            `${receiptReference.textContent}-receipt.txt`;
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+
+        URL.revokeObjectURL(url);
+
+    });
+
+}
+
+
+/* =========================================================
+   SHARE RECEIPT
+========================================================= */
+
+if (shareReceipt) {
+
+    shareReceipt.addEventListener("click", async function () {
+
+        const shareText = `
+NexaBank Transaction Receipt
+
+Status: Successful
+Amount: ${receiptAmount.textContent}
+Recipient: ${receiptRecipient.textContent}
+Account: ${receiptAccount.textContent}
+Bank: ${receiptBank.textContent}
+Date: ${receiptDate.textContent}
+Reference: ${receiptReference.textContent}
+
+Frontend demonstration only.
+No real money was transferred.
+        `.trim();
+
+
+        /* Devices that support native sharing */
+        if (navigator.share) {
+
+            try {
+
+                await navigator.share({
+                    title: "NexaBank Transaction Receipt",
+                    text: shareText
+                });
+
+            } catch (error) {
+
+                console.log("Share cancelled.");
+
+            }
+
+        }
+
+        /* Fallback */
+        else {
+
+            try {
+
+                await navigator.clipboard.writeText(shareText);
+
+                alert("Receipt details copied to clipboard.");
+
+            } catch (error) {
+
+                alert("Unable to share receipt.");
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   BACK TO DASHBOARD
+========================================================= */
+
+if (backDashboard) {
+
+    backDashboard.addEventListener("click", function () {
+
+        window.location.href = "dashboard.html";
+
+    });
+
+}
+
+
+/* =========================================================
+   ANOTHER TRANSFER
+========================================================= */
+
+if (anotherTransfer) {
+
+    anotherTransfer.addEventListener("click", function () {
+
+        receiptModal.classList.remove("show");
+
+        /* Reset form */
+        transferForm.reset();
+
+        /* Reset quick amount buttons */
+        document
+            .querySelectorAll(".quick-amount")
+            .forEach(button => {
+                button.classList.remove("active");
+            });
+
+        /* Return to transfer form */
+        setTimeout(() => {
+
+            const transferSection =
+                document.querySelector(".transfer-form-card");
+
+            if (transferSection) {
+
+                transferSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        }, 200);
+
+    });
+
+}
+
+
+
+
+
+    /* ================================================
+       CLOSE MODAL OUTSIDE
+    ================================================ */
+
+    if (transferModal) {
+
+        transferModal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === transferModal
+                ) {
+
+                    transferModal.classList.remove(
+                        "show"
+                    );
+
+                    document.body.style.overflow =
+                        "";
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* ================================================
+       DARK MODE
+    ================================================ */
+
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+
+    const savedTheme =
+        localStorage.getItem("nexaTheme");
+
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add(
+            "dark-mode"
+        );
+
+    }
+
+
+    function updateThemeIcon() {
+
+        if (!themeToggle) return;
+
+        const icon =
+            themeToggle.querySelector("i");
+
+
+        if (
+            document.body.classList.contains(
+                "dark-mode"
+            )
+        ) {
+
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+
+        } else {
+
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+
+        }
+
+    }
+
+
+    updateThemeIcon();
+
+
+    if (themeToggle) {
+
+        themeToggle.addEventListener(
+            "click",
+            () => {
+
+                document.body.classList.toggle(
+                    "dark-mode"
+                );
+
+
+                const isDark =
+                    document.body.classList.contains(
+                        "dark-mode"
+                    );
+
+
+                localStorage.setItem(
+                    "nexaTheme",
+                    isDark ? "dark" : "light"
+                );
+
+
+                updateThemeIcon();
+
+            }
+        );
+
+    }
+
+
+
+    /* ================================================
+       LOGOUT
+    ================================================ */
+
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
+
+    if (logoutBtn) {
+
+        logoutBtn.addEventListener(
+            "click",
+            () => {
+
+                const confirmLogout =
+                    confirm(
+                        "Are you sure you want to logout?"
+                    );
+
+
+                if (confirmLogout) {
+
+                    window.location.href =
+                        "open-account.html#login";
+
+                }
+
+            }
+        );
+
+    }
+
+</script>
+
+</body>
+</html>
+

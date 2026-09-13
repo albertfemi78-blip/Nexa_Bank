@@ -1,0 +1,2461 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/ChatGPT Image Sep 3, 2026, 07_58_11 PM.png" type="image/x-icon">
+    <meta
+        name="description"
+        content="NexaBank Privacy Policy and Terms & Conditions."
+    >
+
+    <title>NexaBank | Privacy & Terms</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================================================
+           ROOT VARIABLES
+        ========================================================= */
+
+        :root {
+
+            --primary: #0757d5;
+            --primary-dark: #043d99;
+            --secondary: #00a878;
+            --navy: #071b35;
+            --gold: #d5b15a;
+
+            --background: #f5f8fc;
+            --surface: #ffffff;
+            --surface-soft: #f8fafc;
+
+            --text: #142033;
+            --muted: #667085;
+
+            --border: #e1e7ef;
+
+            --danger: #d64545;
+
+            --shadow:
+                0 15px 40px rgba(7, 27, 53, 0.08);
+
+            --shadow-hover:
+                0 22px 55px rgba(7, 27, 53, 0.14);
+
+            --radius: 20px;
+
+            --transition:
+                all 0.35s ease;
+        }
+
+
+        /* =========================================================
+           DARK MODE
+        ========================================================= */
+
+        body.dark-mode {
+
+            --background: #0b1220;
+            --surface: #111a2b;
+            --surface-soft: #162237;
+
+            --text: #ffffff;
+            --muted: #9aa8bc;
+
+            --border: #26354d;
+
+            --shadow:
+                0 15px 40px rgba(0, 0, 0, 0.25);
+
+            --shadow-hover:
+                0 22px 55px rgba(0, 0, 0, 0.4);
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 95px;
+        }
+
+        body {
+
+            font-family:
+                "Inter",
+                sans-serif;
+
+            background:
+                var(--background);
+
+            color:
+                var(--text);
+
+            line-height:
+                1.7;
+
+            transition:
+                background 0.35s ease,
+                color 0.35s ease;
+        }
+
+        a {
+            color: inherit;
+        }
+
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        .navbar {
+
+            width: 100%;
+            height: 75px;
+
+            background:
+                rgba(255,255,255,0.94);
+
+            backdrop-filter:
+                blur(12px);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            padding:
+                0 7%;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            border-bottom:
+                1px solid var(--border);
+
+            transition:
+                var(--transition);
+        }
+
+        body.dark-mode .navbar {
+
+            background:
+                rgba(11,18,32,0.96);
+        }
+
+
+        /* LOGO */
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            color:
+                var(--navy);
+
+            text-decoration: none;
+
+            letter-spacing:
+                -0.5px;
+        }
+
+        .logo span {
+
+            color:
+                var(--primary);
+        }
+
+        body.dark-mode .logo {
+
+            color:
+                #ffffff;
+        }
+
+
+        /* NAVIGATION */
+
+        .nav-menu {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 28px;
+
+            list-style: none;
+        }
+
+        .nav-menu a {
+
+            position: relative;
+
+            text-decoration: none;
+
+            color:
+                var(--text);
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            padding:
+                8px 0;
+
+            transition:
+                var(--transition);
+        }
+
+        .nav-menu a::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background:
+                var(--primary);
+
+            transition:
+                var(--transition);
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+
+            color:
+                var(--primary);
+        }
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+
+            width:
+                100%;
+        }
+
+
+        /* NAV BUTTON */
+
+        .nav-button {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-dark)
+                );
+
+            color:
+                #ffffff !important;
+
+            padding:
+                11px 20px !important;
+
+            border-radius:
+                9px;
+
+            box-shadow:
+                0 8px 20px
+                rgba(7,87,213,0.20);
+        }
+
+        .nav-button::after {
+
+            display:
+                none;
+        }
+
+        .nav-button:hover {
+
+            color:
+                #ffffff !important;
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(7,87,213,0.30);
+        }
+
+
+        /* =========================================================
+           NAV CONTROLS
+        ========================================================= */
+
+        .nav-controls {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .theme-toggle {
+
+            width: 42px;
+            height: 42px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                var(--surface);
+
+            color:
+                var(--text);
+
+            border-radius:
+                50%;
+
+            cursor:
+                pointer;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size:
+                18px;
+
+            transition:
+                var(--transition);
+        }
+
+        .theme-toggle:hover {
+
+            transform:
+                rotate(15deg)
+                scale(1.05);
+
+            border-color:
+                var(--primary);
+
+            color:
+                var(--primary);
+        }
+
+
+        /* =========================================================
+           HAMBURGER
+        ========================================================= */
+
+        .menu-toggle {
+
+            width: 42px;
+            height: 42px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                var(--surface);
+
+            border-radius:
+                9px;
+
+            display:
+                none;
+
+            flex-direction:
+                column;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                5px;
+
+            cursor:
+                pointer;
+        }
+
+        .menu-toggle span {
+
+            width:
+                20px;
+
+            height:
+                2px;
+
+            background:
+                var(--text);
+
+            border-radius:
+                10px;
+
+            transition:
+                var(--transition);
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+
+            transform:
+                translateY(7px)
+                rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+
+            opacity:
+                0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+
+            transform:
+                translateY(-7px)
+                rotate(-45deg);
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .legal-hero {
+
+            min-height:
+                340px;
+
+            padding:
+                80px 7%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            background:
+
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(0,168,120,0.20),
+                    transparent 35%
+                ),
+
+                radial-gradient(
+                    circle at 15% 80%,
+                    rgba(7,87,213,0.20),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #071b35,
+                    #0757d5
+                );
+        }
+
+        .legal-hero::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                380px;
+
+            height:
+                380px;
+
+            border-radius:
+                50%;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            right:
+                -120px;
+
+            top:
+                -150px;
+        }
+
+        .legal-hero::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                200px;
+
+            height:
+                200px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(0,168,120,0.12);
+
+            left:
+                35%;
+
+            bottom:
+                -130px;
+        }
+
+
+        .hero-content {
+
+            max-width:
+                850px;
+
+            position:
+                relative;
+
+            z-index:
+                2;
+
+            animation:
+                heroReveal 0.8s ease forwards;
+        }
+
+        @keyframes heroReveal {
+
+            from {
+
+                opacity:
+                    0;
+
+                transform:
+                    translateY(25px);
+            }
+
+            to {
+
+                opacity:
+                    1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        .hero-tag {
+
+            display:
+                inline-block;
+
+            background:
+                rgba(255,255,255,0.12);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.18);
+
+            color:
+                #ffffff;
+
+            padding:
+                8px 15px;
+
+            border-radius:
+                30px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                600;
+
+            margin-bottom:
+                18px;
+        }
+
+        .hero-content h1 {
+
+            color:
+                #ffffff;
+
+            font-size:
+                clamp(38px,6vw,60px);
+
+            line-height:
+                1.08;
+
+            letter-spacing:
+                -1.8px;
+
+            margin-bottom:
+                18px;
+        }
+
+        .hero-content h1 span {
+
+            color:
+                var(--gold);
+        }
+
+        .hero-content p {
+
+            max-width:
+                700px;
+
+            color:
+                rgba(255,255,255,0.80);
+
+            font-size:
+                16px;
+        }
+
+
+        /* =========================================================
+           LEGAL CONTENT
+        ========================================================= */
+
+        .legal-wrapper {
+
+            max-width:
+                1200px;
+
+            margin:
+                auto;
+
+            padding:
+                80px 7%;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                260px 1fr;
+
+            gap:
+                50px;
+
+            align-items:
+                start;
+        }
+
+
+        /* =========================================================
+           SIDEBAR
+        ========================================================= */
+
+        .legal-sidebar {
+
+            position:
+                sticky;
+
+            top:
+                105px;
+
+            background:
+                var(--surface);
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                var(--radius);
+
+            padding:
+                25px;
+
+            box-shadow:
+                var(--shadow);
+        }
+
+        .legal-sidebar h3 {
+
+            font-size:
+                16px;
+
+            margin-bottom:
+                18px;
+        }
+
+        .legal-sidebar a {
+
+            display:
+                block;
+
+            text-decoration:
+                none;
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+
+            padding:
+                10px 12px;
+
+            border-radius:
+                8px;
+
+            margin-bottom:
+                4px;
+
+            transition:
+                var(--transition);
+        }
+
+        .legal-sidebar a:hover {
+
+            background:
+                rgba(7,87,213,0.08);
+
+            color:
+                var(--primary);
+
+            padding-left:
+                16px;
+        }
+
+        .sidebar-divider {
+
+            height:
+                1px;
+
+            background:
+                var(--border);
+
+            margin:
+                15px 0;
+        }
+
+
+        /* =========================================================
+           LEGAL DOCUMENT
+        ========================================================= */
+
+        .legal-document {
+
+            background:
+                var(--surface);
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                var(--radius);
+
+            padding:
+                45px;
+
+            box-shadow:
+                var(--shadow);
+        }
+
+
+        .last-updated {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            padding:
+                14px 17px;
+
+            margin-bottom:
+                35px;
+
+            background:
+                var(--surface-soft);
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                10px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+        }
+
+        .updated-dot {
+
+            width:
+                8px;
+
+            height:
+                8px;
+
+            background:
+                var(--secondary);
+
+            border-radius:
+                50%;
+        }
+
+
+        /* =========================================================
+           LEGAL SECTIONS
+        ========================================================= */
+
+        .legal-section {
+
+            padding:
+                10px 0 40px;
+
+            margin-bottom:
+                30px;
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .legal-section:last-child {
+
+            border-bottom:
+                none;
+
+            margin-bottom:
+                0;
+
+            padding-bottom:
+                0;
+        }
+
+        .legal-section h2 {
+
+            font-size:
+                27px;
+
+            line-height:
+                1.3;
+
+            color:
+                var(--text);
+
+            margin-bottom:
+                17px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+        }
+
+        .section-number {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            flex-shrink:
+                0;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                9px;
+
+            background:
+                rgba(7,87,213,0.10);
+
+            color:
+                var(--primary);
+
+            font-size:
+                13px;
+
+            font-weight:
+                800;
+        }
+
+        .legal-section h3 {
+
+            font-size:
+                18px;
+
+            margin:
+                24px 0 10px;
+
+            color:
+                var(--text);
+        }
+
+        .legal-section p {
+
+            color:
+                var(--muted);
+
+            font-size:
+                14px;
+
+            margin-bottom:
+                14px;
+        }
+
+        .legal-section ul {
+
+            padding-left:
+                22px;
+
+            margin-bottom:
+                15px;
+        }
+
+        .legal-section li {
+
+            color:
+                var(--muted);
+
+            font-size:
+                14px;
+
+            margin-bottom:
+                8px;
+
+            padding-left:
+                5px;
+        }
+
+        .legal-section li::marker {
+
+            color:
+                var(--primary);
+        }
+
+
+        /* =========================================================
+           IMPORTANT NOTICE
+        ========================================================= */
+
+        .important-notice {
+
+            margin:
+                20px 0;
+
+            padding:
+                20px;
+
+            border-left:
+                4px solid var(--secondary);
+
+            background:
+                rgba(0,168,120,0.07);
+
+            border-radius:
+                0 12px 12px 0;
+        }
+
+        .important-notice strong {
+
+            display:
+                block;
+
+            color:
+                var(--text);
+
+            margin-bottom:
+                5px;
+        }
+
+        .important-notice p {
+
+            margin:
+                0;
+        }
+
+
+        /* =========================================================
+           CONTACT BOX
+        ========================================================= */
+
+        .contact-box {
+
+            margin-top:
+                25px;
+
+            padding:
+                25px;
+
+            border-radius:
+                15px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(7,87,213,0.08),
+                    rgba(0,168,120,0.08)
+                );
+
+            border:
+                1px solid
+                rgba(7,87,213,0.15);
+        }
+
+        .contact-box h3 {
+
+            margin-top:
+                0;
+        }
+
+        .contact-box a {
+
+            color:
+                var(--primary);
+
+            font-weight:
+                600;
+
+            text-decoration:
+                none;
+        }
+
+        .contact-box a:hover {
+
+            text-decoration:
+                underline;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+
+            background:
+                var(--navy);
+
+            color:
+                #ffffff;
+
+            padding:
+                60px 7% 25px;
+        }
+
+        .footer-content {
+
+            max-width:
+                1200px;
+
+            margin:
+                auto;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr 1fr;
+
+            gap:
+                40px;
+        }
+
+        .footer-brand h3 {
+
+            font-size:
+                25px;
+
+            margin-bottom:
+                15px;
+        }
+
+        .footer-brand h3 span {
+
+            color:
+                var(--gold);
+        }
+
+        .footer-brand p {
+
+            color:
+                #aebbd0;
+
+            max-width:
+                350px;
+
+            font-size:
+                14px;
+        }
+
+        .footer-column h4 {
+
+            margin-bottom:
+                15px;
+        }
+
+        .footer-column a {
+
+            display:
+                block;
+
+            color:
+                #aebbd0;
+
+            text-decoration:
+                none;
+
+            margin-bottom:
+                9px;
+
+            font-size:
+                14px;
+
+            transition:
+                var(--transition);
+        }
+
+        .footer-column a:hover {
+
+            color:
+                var(--gold);
+
+            padding-left:
+                4px;
+        }
+
+        .footer-bottom {
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            margin-top:
+                45px;
+
+            padding-top:
+                20px;
+
+            text-align:
+                center;
+
+            color:
+                #8999ad;
+
+            font-size:
+                13px;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE — TABLET
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .navbar {
+
+                padding:
+                    0 5%;
+            }
+
+            .legal-wrapper {
+
+                padding:
+                    70px 5%;
+
+                grid-template-columns:
+                    220px 1fr;
+
+                gap:
+                    30px;
+            }
+
+            .footer-content {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+        }
+
+
+        /* =========================================================
+           RESPONSIVE — MOBILE
+        ========================================================= */
+
+        @media (max-width: 750px) {
+
+            .navbar {
+
+                height:
+                    70px;
+
+                padding:
+                    0 5%;
+            }
+
+            .logo {
+
+                font-size:
+                    23px;
+            }
+
+            .menu-toggle {
+
+                display:
+                    flex;
+            }
+
+            .nav-controls {
+
+                margin-left:
+                    auto;
+
+                margin-right:
+                    10px;
+            }
+
+
+            /* MOBILE MENU */
+
+            .nav-menu {
+
+                position:
+                    fixed;
+
+                top:
+                    70px;
+
+                left:
+                    0;
+
+                width:
+                    100%;
+
+                padding:
+                    25px;
+
+                display:
+                    flex;
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    stretch;
+
+                gap:
+                    5px;
+
+                background:
+                    var(--surface);
+
+                border-top:
+                    1px solid var(--border);
+
+                box-shadow:
+                    0 20px 35px
+                    rgba(7,27,53,0.12);
+
+                opacity:
+                    0;
+
+                visibility:
+                    hidden;
+
+                transform:
+                    translateY(-15px);
+
+                transition:
+                    var(--transition);
+            }
+
+            .nav-menu.open {
+
+                opacity:
+                    1;
+
+                visibility:
+                    visible;
+
+                transform:
+                    translateY(0);
+            }
+
+            .nav-menu li {
+
+                width:
+                    100%;
+            }
+
+            .nav-menu a {
+
+                display:
+                    block;
+
+                width:
+                    100%;
+
+                padding:
+                    13px;
+
+                text-align:
+                    center;
+            }
+
+            .nav-menu a::after {
+
+                display:
+                    none;
+            }
+
+            .nav-button {
+
+                margin-top:
+                    8px;
+            }
+
+
+            /* HERO */
+
+            .legal-hero {
+
+                min-height:
+                    360px;
+
+                padding:
+                    65px 5%;
+            }
+
+            .hero-content h1 {
+
+                font-size:
+                    40px;
+
+                letter-spacing:
+                    -1px;
+            }
+
+            .hero-content p {
+
+                font-size:
+                    15px;
+            }
+
+
+            /* LEGAL */
+
+            .legal-wrapper {
+
+                display:
+                    block;
+
+                padding:
+                    60px 5%;
+            }
+
+
+            /* MOBILE SIDEBAR */
+
+            .legal-sidebar {
+
+                position:
+                    static;
+
+                margin-bottom:
+                    25px;
+            }
+
+            .legal-sidebar h3 {
+
+                margin-bottom:
+                    10px;
+            }
+
+            .legal-sidebar a {
+
+                display:
+                    inline-block;
+
+                margin:
+                    3px;
+
+                background:
+                    var(--surface-soft);
+
+                border:
+                    1px solid var(--border);
+            }
+
+
+            /* DOCUMENT */
+
+            .legal-document {
+
+                padding:
+                    28px 22px;
+            }
+
+            .legal-section h2 {
+
+                font-size:
+                    23px;
+            }
+
+            .legal-section p,
+            .legal-section li {
+
+                font-size:
+                    14px;
+            }
+
+
+            /* FOOTER */
+
+            footer {
+
+                padding:
+                    50px 5% 25px;
+            }
+
+            .footer-content {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    30px;
+            }
+        }
+
+
+        /* =========================================================
+           SMALL PHONES
+        ========================================================= */
+
+        @media (max-width: 420px) {
+
+            .theme-toggle,
+            .menu-toggle {
+
+                width:
+                    38px;
+
+                height:
+                    38px;
+            }
+
+            .hero-content h1 {
+
+                font-size:
+                    35px;
+            }
+
+            .legal-wrapper {
+
+                padding:
+                    50px 4%;
+            }
+
+            .legal-document {
+
+                padding:
+                    24px 18px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         NAVBAR
+    ========================================================= -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            Nexa<span>Bank</span>
+        </a>
+
+
+        <ul class="nav-menu" id="navMenu">
+
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="services.html">
+                    Services
+                </a>
+            </li>
+
+            <li>
+                <a href="about.html">
+                    About
+                </a>
+            </li>
+
+            <li>
+                <a href="contact.html">
+                    Contact
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="open-account.html"
+                    class="nav-button"
+                >
+                    Login
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="nav-controls">
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Toggle dark mode"
+            >
+                🌙
+            </button>
+
+        </div>
+
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </nav>
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <section class="legal-hero">
+
+        <div class="hero-content">
+
+            <span class="hero-tag">
+                Your privacy & security matter
+            </span>
+
+            <h1>
+                Privacy &amp;
+                <span>Terms.</span>
+            </h1>
+
+            <p>
+                At NexaBank, we believe banking should be
+                simple, secure and transparent. Learn how we
+                handle information and the terms that govern
+                your use of our services.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         LEGAL CONTENT
+    ========================================================= -->
+
+    <main class="legal-wrapper">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="legal-sidebar">
+
+            <h3>
+                On this page
+            </h3>
+
+            <a href="#privacy">
+                Privacy Policy
+            </a>
+
+            <a href="#information">
+                Information We Collect
+            </a>
+
+            <a href="#usage">
+                How We Use Information
+            </a>
+
+            <a href="#security">
+                Security
+            </a>
+
+            <a href="#cookies">
+                Cookies
+            </a>
+
+            <div class="sidebar-divider"></div>
+
+            <a href="#terms">
+                Terms & Conditions
+            </a>
+
+            <a href="#account">
+                Account Responsibilities
+            </a>
+
+            <a href="#transactions">
+                Transactions
+            </a>
+
+            <a href="#acceptable">
+                Acceptable Use
+            </a>
+
+            <a href="#changes">
+                Changes to Terms
+            </a>
+
+            <a href="#contact">
+                Contact Us
+            </a>
+
+        </aside>
+
+
+        <!-- DOCUMENT -->
+
+        <article class="legal-document">
+
+
+            <!-- LAST UPDATED -->
+
+            <div class="last-updated">
+
+                <span class="updated-dot"></span>
+
+                <span>
+                    Last updated: August 31, 2026
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 PRIVACY POLICY
+            ================================================= -->
+
+            <section
+                class="legal-section"
+                id="privacy"
+            >
+
+                <h2>
+
+                    <span class="section-number">
+                        01
+                    </span>
+
+                    Privacy Policy
+
+                </h2>
+
+                <p>
+                    This Privacy Policy explains how NexaBank
+                    collects, uses, protects and manages
+                    information provided through our website
+                    and digital banking experience.
+                </p>
+
+                <p>
+                    We are committed to treating personal
+                    information responsibly and maintaining
+                    appropriate safeguards to protect the
+                    information entrusted to us.
+                </p>
+
+            </section>
+
+
+            <!-- INFORMATION -->
+
+            <section
+                class="legal-section"
+                id="information"
+            >
+
+                <h2>
+
+                    <span class="section-number">
+                        02
+                    </span>
+
+                    Information We Collect
+
+                </h2>
+
+                <p>
+                    Depending on how you interact with NexaBank,
+                    we may collect information such as:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Name and basic identification details.
+                    </li>
+
+                    <li>
+                        Contact information such as email
+                        address and telephone number.
+                    </li>
+
+                    <li>
+                        Account and transaction information
+                        where applicable.
+                    </li>
+
+                    <li>
+                        Information you submit through forms,
+                        applications or support requests.
+                    </li>
+
+                    <li>
+                        Technical information such as browser,
+                        device and website usage information.
+                    </li>
+
+                </ul>
+
+                <div class="important-notice">
+
+                    <strong>
+                        Important
+                    </strong>
+
+                    <p>
+                        Never share your password, PIN, OTP,
+                        card security code or other confidential
+                        banking credentials with anyone.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- USAGE -->
+
+            <section
+                class="legal-section"
+                id="usage"
+            >
+
+                <h2>
+
+                    <span class="section-number">
+                        03
+                    </span>
+
+                    How We Use Information
+
+                </h2>
+
+                <p>
+                    Information may be used to provide and
+                    improve our services, communicate with
+                    customers, process requests and maintain
+                    the security of our systems.
+                </p>
+
+                <p>
+                    We may also use information to detect
+                    suspicious activity, prevent fraud, comply
+                    with applicable requirements and improve
+                    the functionality of our website.
+                </p>
+
+            </section>
+
+
+            <!-- SECURITY -->
+
+            <section
+                class="legal-section"
+                id="security"
+            >
+
+                <h2>
+
+                    <span class="section-number">
+                        04
+                    </span>
+
+                    Security
+
+                </h2>
+
+                <p>
+                    NexaBank takes reasonable technical and
+                    organizational measures to protect
+                    information against unauthorized access,
+                    alteration, disclosure or destruction.
+                </p>
+
+                <p>
+                    Users are also responsible for protecting
+                    their login credentials and devices used
+                    to access banking services.
+                </p>
+
+            </section>
+
+
+            <!-- COOKIES -->
+
+            <section
+                class="legal-section"
+                id="cookies"
+            >
+
+                <h2>
+
+                    <span class="section-number">
+                        05
+                    </span>
+
+                    Cookies &amp; Website Technologies
+
+                </h2>
+
+                <p>
+                    NexaBank may use cookies or similar
+                    technologies to support website functionality,
+                    remember preferences and understand how
+                    visitors interact with the website.
+                </p>
+
+                <p>
+                    You may be able to control cookies through
+                    your browser settings. Disabling certain
+                    cookies may affect some website features.
+                </p>
+
+            </section>
+
+
+            <!-- =================================================
+                 TERMS
+            ================================================= -->
+
+            <section
+                class="legal-section"
+                id="terms"
+            >
+
+                <h2>
+
+                    <span class="section-number">
+                        06
+                    </span>
+
+                    Terms &amp; Conditions
+
+                </h2>
+
+                <p>
+                    These Terms &amp; Conditions describe the
+                    general rules governing your use of the
+                    NexaBank website and its available digital
+                    services.
+                </p>
+
+                <p>
+                    By accessing or using the website, you agree
+                    to comply with these terms and all applicable
+                    laws and regulations.
+                </p>
+
+            </section>
+
+
+            <!-- ACCOUNT -->
+
+            <section
+                class="legal-section"
+                id="account"
+            >
+
+                <h2>
+
+                    <span class="section-number">
+                        07
+                    </span>
+
+                    Account Responsibilities
+
+                </h2>
+
+                <p>
+                    Customers are responsible for keeping
+                    their account credentials confidential and
+                    for taking reasonable steps to prevent
+                    unauthorized access to their accounts.
+                </p>
+
+                <ul>
+
+                    <li>
+                        Keep passwords and authentication
+                        information confidential.
+                    </li>
+
+                    <li>
+                        Use strong and unique passwords where
+                        applicable.
+                    </li>
+
+                    <li>
+                        Notify the bank promptly if suspicious
+                        activity is detected.
+                    </li>
+
+                    <li>
+                        Do not allow unauthorized individuals
+                        to access your banking session.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- TRANSACTIONS -->
+
+            <section
+                class="legal-section"
+                id="transactions"
+            >
+
+                <h2>
+
+                    <span class="section-number">
+                        08
+                    </span>
+
+                    Transactions &amp; Services
+
+                </h2>
+
+                <p>
+                    Banking services may be subject to
+                    applicable limits, verification procedures,
+                    processing times, fees and other conditions.
+                </p>
+
+                <p>
+                    Transaction availability may also depend
+                    on system maintenance, network availability,
+                    security checks or circumstances beyond
+                    reasonable control.
+                </p>
+
+            </section>
+
+
+            <!-- ACCEPTABLE USE -->
+
+            <section
+                class="legal-section"
+                id="acceptable"
+            >
+
+                <h2>
+
+                    <span class="section-number">
+                        09
+                    </span>
+
+                    Acceptable Use
+
+                </h2>
+
+                <p>
+                    You agree not to misuse the NexaBank
+                    website or attempt to interfere with
+                    its security, functionality or availability.
+                </p>
+
+                <ul>
+
+                    <li>
+                        Do not attempt unauthorized access
+                        to systems or accounts.
+                    </li>
+
+                    <li>
+                        Do not introduce malicious software
+                        or harmful code.
+                    </li>
+
+                    <li>
+                        Do not use the website for fraudulent
+                        or unlawful activities.
+                    </li>
+
+                    <li>
+                        Do not attempt to disrupt or overload
+                        our systems.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- CHANGES -->
+
+            <section
+                class="legal-section"
+                id="changes"
+            >
+
+                <h2>
+
+                    <span class="section-number">
+                        10
+                    </span>
+
+                    Changes to These Terms
+
+                </h2>
+
+                <p>
+                    NexaBank may update these Privacy Policy
+                    and Terms &amp; Conditions pages when
+                    necessary to reflect changes to our
+                    services, practices or applicable
+                    requirements.
+                </p>
+
+                <p>
+                    Updated versions will be published on this
+                    page with a revised effective or updated
+                    date.
+                </p>
+
+            </section>
+
+
+            <!-- CONTACT -->
+
+            <section
+                class="legal-section"
+                id="contact"
+            >
+
+                <h2>
+
+                    <span class="section-number">
+                        11
+                    </span>
+
+                    Contact NexaBank
+
+                </h2>
+
+                <p>
+                    If you have questions about this Privacy
+                    Policy, these Terms &amp; Conditions or
+                    the handling of your information, please
+                    contact NexaBank through our official
+                    support channels.
+                </p>
+
+
+                <div class="contact-box">
+
+                    <h3>
+                        Need assistance?
+                    </h3>
+
+                    <p>
+                        Our support team is available to help
+                        with questions about your account,
+                        privacy and digital banking services.
+                    </p>
+
+                    <a href="contact.html">
+                        Contact our support team →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+        </article>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+
+            <div class="footer-brand">
+
+                <h3>
+                    Nexa<span>Bank</span>
+                </h3>
+
+                <p>
+                    Simple, secure and modern banking
+                    designed to help you achieve more
+                    with your money.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Banking
+                </h4>
+
+                <a href="services.html">
+                    Accounts
+                </a>
+
+                <a href="services.html">
+                    Cards
+                </a>
+
+                <a href="services.html">
+                    Loans
+                </a>
+
+                <a href="services.html">
+                    Investments
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Company
+                </h4>
+
+                <a href="about.html">
+                    About Us
+                </a>
+
+                <a href="services.html">
+                    Services
+                </a>
+
+                <a href="contact.html">
+                    Contact Us
+                </a>
+
+                <a href="privacy-terms.html">
+                    Privacy &amp; Terms
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Support
+                </h4>
+
+                <a href="contact.html">
+                    Help Centre
+                </a>
+
+                <a href="contact.html">
+                    Contact Us
+                </a>
+
+                <a href="#security">
+                    Security
+                </a>
+
+                <a href="#privacy">
+                    Privacy Policy
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © 2026 NexaBank.
+            
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* =====================================================
+           DARK / LIGHT MODE
+        ===================================================== */
+
+        const themeToggle =
+            document.getElementById("themeToggle");
+
+
+        const savedTheme =
+            localStorage.getItem("nexaTheme");
+
+
+        if (savedTheme === "dark") {
+
+            document.body.classList.add(
+                "dark-mode"
+            );
+
+            themeToggle.textContent =
+                "☀️";
+
+        } else {
+
+            themeToggle.textContent =
+                "🌙";
+        }
+
+
+        themeToggle.addEventListener(
+            "click",
+            () => {
+
+                document.body.classList.toggle(
+                    "dark-mode"
+                );
+
+
+                const isDark =
+                    document.body.classList.contains(
+                        "dark-mode"
+                    );
+
+
+                localStorage.setItem(
+                    "nexaTheme",
+                    isDark
+                        ? "dark"
+                        : "light"
+                );
+
+
+                themeToggle.textContent =
+                    isDark
+                        ? "☀️"
+                        : "🌙";
+
+            }
+        );
+
+
+        /* =====================================================
+           MOBILE MENU
+        ===================================================== */
+
+        const menuToggle =
+            document.getElementById(
+                "menuToggle"
+            );
+
+        const navMenu =
+            document.getElementById(
+                "navMenu"
+            );
+
+
+        menuToggle.addEventListener(
+            "click",
+            () => {
+
+                const isOpen =
+                    navMenu.classList.toggle(
+                        "open"
+                    );
+
+
+                menuToggle.classList.toggle(
+                    "active"
+                );
+
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    isOpen
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           CLOSE MENU WHEN LINK IS CLICKED
+        ===================================================== */
+
+        const navLinks =
+            navMenu.querySelectorAll(
+                "a"
+            );
+
+
+        navLinks.forEach(
+            link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        navMenu.classList.remove(
+                            "open"
+                        );
+
+                        menuToggle.classList.remove(
+                            "active"
+                        );
+
+                        menuToggle.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           CLOSE MENU WHEN CLICKING OUTSIDE
+        ===================================================== */
+
+        document.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    !navMenu.contains(event.target) &&
+                    !menuToggle.contains(event.target)
+                ) {
+
+                    navMenu.classList.remove(
+                        "open"
+                    );
+
+                    menuToggle.classList.remove(
+                        "active"
+                    );
+
+                    menuToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
+

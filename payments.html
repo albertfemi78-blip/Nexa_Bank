@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/ChatGPT Image Sep 3, 2026, 07_58_11 PM.png" type="image/x-icon">
+    <title>NexaBank | Payments</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+<!-- =========================================
+     NEXA AI ASSISTANT
+========================================= -->
+
+<button class="nexa-ai-button" id="nexaAiButton" aria-label="Open Nexa AI">
+
+    <i class="fa-solid fa-robot"></i>
+
+    <span class="nexa-ai-pulse"></span>
+
+</button>
+
+
+<div class="nexa-ai-chat" id="nexaAiChat">
+
+    <!-- HEADER -->
+
+    <div class="nexa-ai-header">
+
+        <div class="nexa-ai-title">
+
+            <div class="nexa-ai-avatar">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <div>
+                <strong>Nexa AI</strong>
+
+                <span>
+                    <i class="fa-solid fa-circle"></i>
+                    Online
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="nexa-ai-header-actions">
+
+            <button id="nexaClearChat" title="Clear chat">
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+            <button id="nexaCloseChat" title="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CHAT BODY -->
+
+    <div class="nexa-ai-messages" id="nexaAiMessages">
+
+        <!-- Welcome message is inserted by JavaScript -->
+
+    </div>
+
+
+    <!-- QUICK QUESTIONS -->
+
+    <div class="nexa-ai-suggestions" id="nexaAiSuggestions">
+
+        <button data-question="How do I transfer money?">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            Transfer money
+        </button>
+
+        <button data-question="Show me my transactions">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Transactions
+        </button>
+
+        <button data-question="Tell me about my card">
+            <i class="fa-solid fa-credit-card"></i>
+            My card
+        </button>
+
+        <button data-question="I need help">
+            <i class="fa-solid fa-circle-question"></i>
+            Get help
+        </button>
+
+    </div>
+
+
+    <!-- INPUT -->
+
+    <div class="nexa-ai-input-area">
+
+        <input
+            type="text"
+            id="nexaAiInput"
+            placeholder="Ask Nexa AI..."
+            autocomplete="off"
+        >
+
+        <button id="nexaAiSend" aria-label="Send message">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+        </button>
+
+    </div>
+
+
+    <div class="nexa-ai-footer">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        Nexa AI is a frontend demonstration
+
+    </div>
+
+</div>
+<body>
+
+<header class="dashboard-header">
+
+    <div class="logo">
+        Nexa<span>Bank</span>
+    </div>
+
+    <div class="header-right">
+
+        <div class="notification">
+            <i class="fa-regular fa-bell"></i>
+            <span class="notification-dot"></span>
+        </div>
+
+        <div class="profile">
+
+            <div class="profile-image">
+                A
+            </div>
+
+            <div class="profile-info">
+                <strong>Albert</strong>
+                <small>Personal Account</small>
+            </div>
+
+        </div>
+
+        <button class="menu-button" id="menuButton">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+    </div>
+
+</header>
+
+
+<aside class="sidebar" id="sidebar">
+
+    <nav>
+
+        <a href="dashboard.html">
+            <i class="fa-solid fa-house"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a href="transfer.html">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            <span>Transfer</span>
+        </a>
+
+        <a href="payments.html" class="active">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Payments</span>
+        </a>
+
+        <a href="transactions.html">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>Transactions</span>
+        </a>
+
+        <a href="my-card.html">
+            <i class="fa-solid fa-credit-card"></i>
+            <span>My Card</span>
+        </a>
+
+        <a href="profile.html">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+
+        <a href="settings.html">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+        </a>
+
+        <a href="support.html">
+            <i class="fa-solid fa-circle-question"></i>
+            <span>Help & Support</span>
+        </a>
+
+    </nav>
+
+    <button class="logout-btn" id="logoutBtn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </button>
+
+</aside>
+
+
+<main class="dashboard">
+
+    <div class="page-container">
+
+        <div class="page-header">
+
+            <div>
+                <h1>Payments</h1>
+
+                <p>
+                    Manage your bills and everyday payments.
+                </p>
+            </div>
+
+            <a href="dashboard.html" class="back-link">
+                ← Dashboard
+            </a>
+
+        </div>
+
+
+        <div class="action-grid">
+
+            <div class="action-card">
+                <div class="action-icon">
+                    <i class="fa-solid fa-lightbulb"></i>
+                </div>
+
+                <h3>Electricity</h3>
+                <p>Pay your electricity bills.</p>
+            </div>
+
+
+            <div class="action-card">
+                <div class="action-icon">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                </div>
+
+                <h3>Airtime</h3>
+                <p>Recharge your mobile line.</p>
+            </div>
+
+
+            <div class="action-card">
+                <div class="action-icon">
+                    <i class="fa-solid fa-wifi"></i>
+                </div>
+
+                <h3>Internet</h3>
+                <p>Pay internet subscriptions.</p>
+            </div>
+
+
+            <div class="action-card">
+                <div class="action-icon">
+                    <i class="fa-solid fa-tv"></i>
+                </div>
+
+                <h3>TV Subscription</h3>
+                <p>Pay your TV subscription.</p>
+            </div>
+
+        </div>
+
+
+        <div class="content-card">
+
+            <h2>Make a Payment</h2>
+
+            <p>Select a payment type and enter the required information.</p>
+
+            <br>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Payment Type</label>
+
+                    <select>
+                        <option>Select payment</option>
+                        <option>Electricity</option>
+                        <option>Airtime</option>
+                        <option>Internet</option>
+                        <option>TV Subscription</option>
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Amount</label>
+
+                    <input
+                        type="number"
+                        placeholder="₦0.00">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Customer / Account Number</label>
+
+                    <input
+                        type="text"
+                        placeholder="Enter number">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Payment Reference</label>
+
+                    <input
+                        type="text"
+                        placeholder="Optional">
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <button class="primary-btn">
+                Continue Payment
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>
