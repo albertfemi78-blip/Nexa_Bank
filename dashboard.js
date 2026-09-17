@@ -2,7 +2,140 @@
 /* =========================================================
    NEXABANK DASHBOARD JAVASCRIPT
 ========================================================= */
+/* =========================================================
+   NEXABANK DASHBOARD JAVASCRIPT
+========================================================= */
+/* =========================================
+   NEXABANK DASHBOARD
+========================================= */
 
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Get current logged-in user
+    const savedUser =
+        localStorage.getItem("currentUser");
+
+
+    // =========================================
+    // CHECK LOGIN
+    // =========================================
+
+    if (!savedUser) {
+
+        window.location.href =
+            "open-account.html";
+
+        return;
+    }
+
+
+    // Convert JSON back into an object
+    const user =
+        JSON.parse(savedUser);
+
+
+    // =========================================
+    // USER NAME
+    // =========================================
+
+    const welcomeName =
+        document.getElementById("welcomeName");
+
+    const userName =
+        document.getElementById("userName");
+
+
+    if (welcomeName) {
+        welcomeName.textContent =
+            user.fullName;
+    }
+
+    if (userName) {
+        userName.textContent =
+            user.fullName;
+    }
+
+
+    // =========================================
+    // ACCOUNT BALANCE
+    // =========================================
+
+    const accountBalance =
+        document.getElementById("accountBalance");
+
+    if (accountBalance) {
+
+        const balance =
+            user.balance ?? 0;
+
+        accountBalance.textContent =
+            `₦${Number(balance).toLocaleString("en-NG", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })}`;
+
+    }
+
+});
+// ==========================================
+// LOAD REGISTERED USER
+// ==========================================
+
+const savedUser = localStorage.getItem("currentUser");
+
+// If no user is logged in, send them back to login
+if (!savedUser) {
+    window.location.href = "login.html";
+}
+
+// Convert saved user data from JSON to JavaScript object
+const user = JSON.parse(savedUser);
+
+// ==========================================
+// GET USER DETAILS
+// ==========================================
+
+const userName = user.fullName || user.name || "NexaBank User";
+
+// ==========================================
+// DISPLAY USER'S NAME
+// ==========================================
+
+const nameElements = document.querySelectorAll(
+    "#userName, #welcomeName, .user-name"
+);
+
+nameElements.forEach(element => {
+    element.textContent = userName;
+});
+
+// ==========================================
+// ACCOUNT BALANCE
+// ==========================================
+
+// If the user doesn't have a balance yet,
+// create one with ₦0
+if (user.balance === undefined || user.balance === null) {
+    user.balance = 0;
+
+    // Save the updated user back to localStorage
+    localStorage.setItem("currentUser", JSON.stringify(user));
+}
+
+// ==========================================
+// DISPLAY BALANCE
+// ==========================================
+
+const balanceElements = document.querySelectorAll(
+    "#accountBalance, #balance"
+);
+
+balanceElements.forEach(element => {
+    element.textContent = `₦${Number(user.balance).toLocaleString("en-NG", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
+});
 
 /* =========================================================
    MOBILE SIDEBAR
@@ -1667,5 +1800,625 @@ document.addEventListener(
         }
 
     }
-);
+)
+
+
+    /* ================================================
+       MOBILE MENU
+    ================================================ */
+   {
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const sidebar =
+        document.getElementById("sidebar");
+    }
+
+    if (menuButton && sidebar) {
+
+        menuButton.addEventListener("click", () => {
+
+            sidebar.classList.toggle("show");
+
+            const icon =
+                menuButton.querySelector("i");
+
+            if (sidebar.classList.contains("show")) {
+
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-xmark");
+
+            } else {
+
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+
+            }
+
+        });
+
+    }
+
+
+
+    /* ================================================
+       QUICK AMOUNTS
+    ================================================ */
+
+    const amountInput =
+        document.getElementById("transferAmount");
+
+    const quickAmounts =
+        document.querySelectorAll("[data-amount]");
+
+
+    quickAmounts.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            amountInput.value =
+                button.dataset.amount;
+
+        });
+
+    });
+
+
+
+    /* ================================================
+       TRANSFER FORM
+    ================================================ */
+
+    const transferForm =
+        document.getElementById("transferForm");
+
+    const transferModal =
+        document.getElementById("transferModal");
+
+    const previewRecipient =
+        document.getElementById("previewRecipient");
+
+    const previewAmount =
+        document.getElementById("previewAmount");
+
+
+    if (transferForm) {
+
+        transferForm.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+
+                const recipient =
+                    document.getElementById(
+                        "recipientName"
+                    ).value;
+
+
+                const amount =
+                    amountInput.value;
+
+
+                if (!recipient || !amount) {
+
+                    alert(
+                        "Please complete the transfer details."
+                    );
+
+                    return;
+
+                }
+
+
+                previewRecipient.textContent =
+                    recipient;
+
+
+                previewAmount.textContent =
+                    "₦" +
+                    Number(amount).toLocaleString(
+                        "en-NG",
+                        {
+                            minimumFractionDigits: 2
+                        }
+                    );
+
+
+                transferModal.classList.add("show");
+
+                document.body.style.overflow =
+                    "hidden";
+
+            }
+        );
+
+    }
+
+
+
+    /* ================================================
+       CLOSE MODAL
+    ================================================ */
+
+    const closeTransferModal =
+        document.getElementById(
+            "closeTransferModal"
+        );
+
+
+    if (closeTransferModal) {
+
+        closeTransferModal.addEventListener(
+            "click",
+            () => {
+
+                transferModal.classList.remove("show");
+
+                document.body.style.overflow = "";
+
+            }
+        );
+
+    }
+
+
+
+    /* ================================================
+       CONFIRM DEMO
+    ================================================ */
+
+   
+/* =========================================================
+   CONFIRM TRANSFER → TRANSACTION RECEIPT
+========================================================= */
+
+const receiptModal = document.getElementById("receiptModal");
+
+const receiptClose = document.getElementById("receiptClose");
+
+const receiptAmount = document.getElementById("receiptAmount");
+const receiptRecipient = document.getElementById("receiptRecipient");
+const receiptAccount = document.getElementById("receiptAccount");
+const receiptBank = document.getElementById("receiptBank");
+const receiptNote = document.getElementById("receiptNote");
+const receiptDate = document.getElementById("receiptDate");
+const receiptReference = document.getElementById("receiptReference");
+
+const downloadReceipt = document.getElementById("downloadReceipt");
+const shareReceipt = document.getElementById("shareReceipt");
+
+const backDashboard = document.getElementById("backDashboard");
+const anotherTransfer = document.getElementById("anotherTransfer");
+
+
+if (confirmTransfer) {
+
+    confirmTransfer.addEventListener("click", function () {
+
+        /* Generate unique demo transaction reference */
+        const reference =
+            "NXB-" +
+            Date.now().toString(36).toUpperCase() +
+            "-" +
+            Math.floor(1000 + Math.random() * 9000);
+
+        /* Current date and time */
+        const now = new Date();
+
+        const formattedDate = now.toLocaleString("en-NG", {
+            dateStyle: "medium",
+            timeStyle: "short"
+        });
+
+        /* Format amount */
+        const amountValue = Number(transferAmount.value);
+
+        const formattedAmount =
+            `₦${amountValue.toLocaleString("en-NG", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })}`;
+
+        /* Fill receipt */
+        receiptAmount.textContent = formattedAmount;
+
+        receiptRecipient.textContent =
+            recipientName.value.trim() || "NexaBank User";
+
+        receiptAccount.textContent =
+            accountNumber.value.trim() || "—";
+
+        receiptBank.textContent =
+            bankName.value.trim() || "NexaBank";
+
+        receiptNote.textContent =
+            transferNote.value.trim() || "Transfer";
+
+        receiptDate.textContent = formattedDate;
+
+        receiptReference.textContent = reference;
+
+        /* Close confirmation modal */
+        transferModal.classList.remove("show");
+
+        /* Open receipt */
+        setTimeout(() => {
+            receiptModal.classList.add("show");
+        }, 200);
+
+    });
+
+}
+
+
+/* =========================================================
+   CLOSE RECEIPT
+========================================================= */
+
+if (receiptClose) {
+
+    receiptClose.addEventListener("click", function () {
+        receiptModal.classList.remove("show");
+    });
+
+}
+
+
+/* =========================================================
+   CLICK OUTSIDE RECEIPT
+========================================================= */
+
+if (receiptModal) {
+
+    receiptModal.addEventListener("click", function (event) {
+
+        if (event.target === receiptModal) {
+            receiptModal.classList.remove("show");
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   DOWNLOAD RECEIPT
+========================================================= */
+
+if (downloadReceipt) {
+
+    downloadReceipt.addEventListener("click", function () {
+
+        const receiptText = `
+NEXABANK
+TRANSACTION RECEIPT
+================================
+
+Status: Successful
+
+Amount Transferred:
+${receiptAmount.textContent}
+
+Recipient:
+${receiptRecipient.textContent}
+
+Account Number:
+${receiptAccount.textContent}
+
+Bank:
+${receiptBank.textContent}
+
+Description:
+${receiptNote.textContent}
+
+Date & Time:
+${receiptDate.textContent}
+
+Transaction Reference:
+${receiptReference.textContent}
+
+================================
+Frontend Demonstration
+No real money was transferred.
+        `.trim();
+
+        const blob = new Blob(
+            [receiptText],
+            { type: "text/plain" }
+        );
+
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+
+        link.href = url;
+
+        link.download =
+            `${receiptReference.textContent}-receipt.txt`;
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        document.body.removeChild(link);
+
+        URL.revokeObjectURL(url);
+
+    });
+
+}
+
+
+/* =========================================================
+   SHARE RECEIPT
+========================================================= */
+
+if (shareReceipt) {
+
+    shareReceipt.addEventListener("click", async function () {
+
+        const shareText = `
+NexaBank Transaction Receipt
+
+Status: Successful
+Amount: ${receiptAmount.textContent}
+Recipient: ${receiptRecipient.textContent}
+Account: ${receiptAccount.textContent}
+Bank: ${receiptBank.textContent}
+Date: ${receiptDate.textContent}
+Reference: ${receiptReference.textContent}
+
+Frontend demonstration only.
+No real money was transferred.
+        `.trim();
+
+
+        /* Devices that support native sharing */
+        if (navigator.share) {
+
+            try {
+
+                await navigator.share({
+                    title: "NexaBank Transaction Receipt",
+                    text: shareText
+                });
+
+            } catch (error) {
+
+                console.log("Share cancelled.");
+
+            }
+
+        }
+
+        /* Fallback */
+        else {
+
+            try {
+
+                await navigator.clipboard.writeText(shareText);
+
+                alert("Receipt details copied to clipboard.");
+
+            } catch (error) {
+
+                alert("Unable to share receipt.");
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   BACK TO DASHBOARD
+========================================================= */
+
+if (backDashboard) {
+
+    backDashboard.addEventListener("click", function () {
+
+        window.location.href = "dashboard.html";
+
+    });
+
+}
+
+
+/* =========================================================
+   ANOTHER TRANSFER
+========================================================= */
+
+if (anotherTransfer) {
+
+    anotherTransfer.addEventListener("click", function () {
+
+        receiptModal.classList.remove("show");
+
+        /* Reset form */
+        transferForm.reset();
+
+        /* Reset quick amount buttons */
+        document
+            .querySelectorAll(".quick-amount")
+            .forEach(button => {
+                button.classList.remove("active");
+            });
+
+        /* Return to transfer form */
+        setTimeout(() => {
+
+            const transferSection =
+                document.querySelector(".transfer-form-card");
+
+            if (transferSection) {
+
+                transferSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        }, 200);
+
+    });
+
+}
+
+
+
+
+
+    /* ================================================
+       CLOSE MODAL OUTSIDE
+    ================================================ */
+
+    if (transferModal) {
+
+        transferModal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target === transferModal
+                ) {
+
+                    transferModal.classList.remove(
+                        "show"
+                    );
+
+                    document.body.style.overflow =
+                        "";
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* ================================================
+       DARK MODE
+    ================================================ */
+    {
+    const themeToggle =
+        document.getElementById("themeToggle");
+
+
+    const savedTheme =
+        localStorage.getItem("nexaTheme");
+   }
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add(
+            "dark-mode"
+        );
+
+    }
+
+
+    function updateThemeIcon() {
+
+        if (!themeToggle) return;
+
+        const icon =
+            themeToggle.querySelector("i");
+
+
+        if (
+            document.body.classList.contains(
+                "dark-mode"
+            )
+        ) {
+
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+
+        } else {
+
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+
+        }
+
+    }
+
+
+    updateThemeIcon();
+
+
+    if (themeToggle) {
+
+        themeToggle.addEventListener(
+            "click",
+            () => {
+
+                document.body.classList.toggle(
+                    "dark-mode"
+                );
+
+
+                const isDark =
+                    document.body.classList.contains(
+                        "dark-mode"
+                    );
+
+
+                localStorage.setItem(
+                    "nexaTheme",
+                    isDark ? "dark" : "light"
+                );
+
+
+                updateThemeIcon();
+
+            }
+        );
+
+    }
+
+
+
+    /* ================================================
+       LOGOUT
+    ================================================ */
+    {
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+    }
+
+    if (logoutBtn) {
+
+        logoutBtn.addEventListener(
+            "click",
+            () => {
+
+                const confirmLogout =
+                    confirm(
+                        "Are you sure you want to logout?"
+                    );
+
+
+                if (confirmLogout) {
+
+                    window.location.href =
+                        "open-account.html#login";
+
+                }
+
+            }
+        );
+
+    };
+
+
 

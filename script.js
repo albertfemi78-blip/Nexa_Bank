@@ -370,107 +370,70 @@ if (calculateLoan) {
 
 }
 
-
 /* =========================================
    ACCOUNT FORM
 ========================================= */
 
-const accountForm =
-    document.getElementById("accountForm");
-
+const accountForm = document.getElementById("accountForm");
 
 if (accountForm) {
 
-    const formSteps =
-        accountForm.querySelectorAll(".form-step");
-
-
-    const progressSteps =
-        accountForm.querySelectorAll(".progress-step");
-
+    const formSteps = accountForm.querySelectorAll(".form-step");
+    const progressSteps = accountForm.querySelectorAll(".progress-step");
 
     let currentStep = 1;
-
 
     function showStep(step) {
 
         formSteps.forEach((formStep) => {
-
             formStep.classList.remove("active");
 
-            if (
-                Number(
-                    formStep.dataset.step
-                ) === step
-            ) {
-
+            if (Number(formStep.dataset.step) === step) {
                 formStep.classList.add("active");
-
             }
-
         });
 
-
-        progressSteps.forEach(
-            (progressStep, index) => {
-
-                progressStep.classList.toggle(
-                    "active",
-                    index < step
-                );
-
-            }
-        );
-
+        progressSteps.forEach((progressStep, index) => {
+            progressStep.classList.toggle("active", index < step);
+        });
 
         currentStep = step;
-
     }
 
 
-    const nextButtons =
-        accountForm.querySelectorAll(".next-step");
+    /* =========================================
+       NEXT BUTTON
+    ========================================= */
 
+    const nextButtons = accountForm.querySelectorAll(".next-step");
 
     nextButtons.forEach((button) => {
 
         button.addEventListener("click", () => {
 
-            const currentFormStep =
-                accountForm.querySelector(
-                    `.form-step[data-step="${currentStep}"]`
-                );
+            const currentFormStep = accountForm.querySelector(
+                `.form-step[data-step="${currentStep}"]`
+            );
 
-
-            const inputs =
-                currentFormStep.querySelectorAll(
-                    "input, select"
-                );
-
+            const inputs = currentFormStep.querySelectorAll(
+                "input, select"
+            );
 
             let valid = true;
-
 
             inputs.forEach((input) => {
 
                 if (!input.checkValidity()) {
-
                     input.reportValidity();
-
                     valid = false;
-
                 }
 
             });
 
-
             if (!valid) return;
 
-
             if (currentStep < 3) {
-
                 showStep(currentStep + 1);
-
             }
 
         });
@@ -478,18 +441,18 @@ if (accountForm) {
     });
 
 
-    const prevButtons =
-        accountForm.querySelectorAll(".prev-step");
+    /* =========================================
+       PREVIOUS BUTTON
+    ========================================= */
 
+    const prevButtons = accountForm.querySelectorAll(".prev-step");
 
     prevButtons.forEach((button) => {
 
         button.addEventListener("click", () => {
 
             if (currentStep > 1) {
-
                 showStep(currentStep - 1);
-
             }
 
         });
@@ -497,22 +460,114 @@ if (accountForm) {
     });
 
 
-    accountForm.addEventListener(
-        "submit",
-        (event) => {
+    /* =========================================
+       CREATE ACCOUNT
+    ========================================= */
 
-            event.preventDefault();
+    accountForm.addEventListener("submit", (event) => {
+
+        event.preventDefault();
+
+        // Get information from the form
+        const firstName =
+            document.getElementById("firstName").value.trim();
+
+        const lastName =
+            document.getElementById("lastName").value.trim();
+
+        const dob =
+            document.getElementById("dob").value;
+
+        const accountType =
+            document.getElementById("accountType").value;
+
+        const email =
+            document.getElementById("email").value.trim().toLowerCase();
+
+        const password =
+            document.getElementById("password").value;
+
+        const phone =
+            document.getElementById("phone").value.trim();
+
+        const city =
+            document.getElementById("city").value.trim();
 
 
-            alert(
-                "Demo application completed successfully. No information has been submitted."
-            );
+        // =========================================
+        // CREATE USER OBJECT
+        // =========================================
 
-        }
-    );
+        const newUser = {
+
+            fullName: `${firstName} ${lastName}`,
+
+            firstName: firstName,
+
+            lastName: lastName,
+
+            email: email,
+
+            password: password,
+
+            dob: dob,
+
+            accountType: accountType,
+
+            phone: phone,
+
+            city: city,
+
+            // IMPORTANT:
+            // Every new account starts with zero balance
+            balance: 0
+
+        };
+
+
+        // =========================================
+        // SAVE USER
+        // =========================================
+
+        localStorage.setItem(
+            "registeredUser",
+            JSON.stringify(newUser)
+        );
+
+
+        // =========================================
+        // LOG USER IN AUTOMATICALLY
+        // =========================================
+
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(newUser)
+        );
+
+        sessionStorage.setItem(
+            "isLoggedIn",
+            "true"
+        );
+
+
+        // =========================================
+        // SUCCESS MESSAGE
+        // =========================================
+
+        alert(
+            `Account created successfully!\n\nWelcome ${firstName} ${lastName}!`
+        );
+
+
+        // =========================================
+        // GO TO DASHBOARD
+        // =========================================
+
+        window.location.href = "dashboard.html";
+
+    });
 
 }
-
 
 /* =========================================
    CONTACT FORM
@@ -831,23 +886,88 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                // =====================================
-                // LOGIN SUCCESSFUL
-                // =====================================
+               // =====================================
+// GET REGISTERED USER
+// =====================================
 
-                loginMessage.className =
-                    "login-message success";
+const savedUser = localStorage.getItem("registeredUser");
 
-                loginMessage.textContent =
-                    "Login successful! Redirecting...";
+if (!savedUser) {
+
+    loginMessage.className =
+        "login-message error";
+
+    loginMessage.textContent =
+        "No account found. Please create an account first.";
+
+    return;
+}
+
+const registeredUser = JSON.parse(savedUser);
 
 
-                // Save login status
+// =====================================
+// CHECK EMAIL
+// =====================================
 
-                sessionStorage.setItem(
-                    "isLoggedIn",
-                    "true"
-                );
+if (email !== registeredUser.email) {
+
+    emailError.textContent =
+        "No account exists with this email.";
+
+    return;
+}
+
+
+// =====================================
+// CHECK PASSWORD
+// =====================================
+
+if (password !== registeredUser.password) {
+
+    passwordError.textContent =
+        "Incorrect password.";
+
+    return;
+}
+
+
+// =====================================
+// LOGIN SUCCESSFUL
+// =====================================
+
+loginMessage.className =
+    "login-message success";
+
+loginMessage.textContent =
+    "Login successful! Redirecting...";
+
+
+// =====================================
+// SAVE CURRENT USER
+// =========================================
+
+localStorage.setItem(
+    "currentUser",
+    JSON.stringify(registeredUser)
+);
+
+sessionStorage.setItem(
+    "isLoggedIn",
+    "true"
+);
+
+
+// =========================================
+// GO TO DASHBOARD
+// =========================================
+
+setTimeout(() => {
+
+    window.location.href =
+        "dashboard.html";
+
+}, 1000);
 
 
                 // =====================================
