@@ -1,33 +1,41 @@
-/* =========================================
+/* =========================================================
+   NEXABANK - MAIN JAVASCRIPT
+   ========================================================= */
+
+
+/* =========================================================
    MOBILE MENU
-========================================= */
+   ========================================================= */
 
-const menuToggle =
-    document.getElementById("menuToggle");
-
-const navMenu =
-    document.getElementById("navMenu");
-
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
 
 if (menuToggle && navMenu) {
 
     menuToggle.addEventListener("click", () => {
-
         navMenu.classList.toggle("open");
 
-    });
+        const expanded =
+            navMenu.classList.contains("open");
 
+        menuToggle.setAttribute(
+            "aria-expanded",
+            expanded
+        );
+    });
 
     const navLinks =
         navMenu.querySelectorAll("a");
 
-
     navLinks.forEach((link) => {
 
         link.addEventListener("click", () => {
-
             navMenu.classList.remove("open");
 
+            menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+            );
         });
 
     });
@@ -35,26 +43,21 @@ if (menuToggle && navMenu) {
 }
 
 
-/* =========================================
+/* =========================================================
    NAVBAR SCROLL EFFECT
-========================================= */
+   ========================================================= */
 
 const navbar =
     document.getElementById("navbar");
-
 
 if (navbar) {
 
     window.addEventListener("scroll", () => {
 
         if (window.scrollY > 50) {
-
             navbar.classList.add("scrolled");
-
         } else {
-
             navbar.classList.remove("scrolled");
-
         }
 
     });
@@ -62,77 +65,78 @@ if (navbar) {
 }
 
 
-/* =========================================
+/* =========================================================
    SCROLL REVEAL
-========================================= */
+   ========================================================= */
 
 const revealElements =
     document.querySelectorAll(".reveal");
 
+if ("IntersectionObserver" in window) {
 
-const revealObserver =
-    new IntersectionObserver(
-        (entries, observer) => {
+    const revealObserver =
+        new IntersectionObserver(
+            (entries, observer) => {
 
-            entries.forEach((entry) => {
+                entries.forEach((entry) => {
 
-                if (entry.isIntersecting) {
+                    if (entry.isIntersecting) {
 
-                    entry.target.classList.add("visible");
+                        entry.target.classList.add(
+                            "visible"
+                        );
 
-                    observer.unobserve(entry.target);
+                        observer.unobserve(
+                            entry.target
+                        );
+                    }
 
-                }
+                });
 
-            });
+            },
+            {
+                threshold: 0.12
+            }
+        );
 
-        },
-        {
-            threshold: 0.12
-        }
-    );
+    revealElements.forEach((element) => {
+        revealObserver.observe(element);
+    });
+
+} else {
+
+    // Fallback for older browsers
+    revealElements.forEach((element) => {
+        element.classList.add("visible");
+    });
+
+}
 
 
-revealElements.forEach((element) => {
-
-    revealObserver.observe(element);
-
-});
-
-
-/* =========================================
+/* =========================================================
    BACK TO TOP
-========================================= */
+   ========================================================= */
 
 const backTop =
     document.getElementById("backTop");
-
 
 if (backTop) {
 
     window.addEventListener("scroll", () => {
 
         if (window.scrollY > 500) {
-
             backTop.classList.add("show");
-
         } else {
-
             backTop.classList.remove("show");
-
         }
 
     });
 
-
     backTop.addEventListener("click", () => {
 
         window.scrollTo({
-
             top: 0,
-
             behavior: "smooth"
-
         });
 
     });
@@ -140,23 +144,20 @@ if (backTop) {
 }
 
 
-/* =========================================
+/* =========================================================
    ANIMATED COUNTERS
-========================================= */
+   ========================================================= */
 
 const counters =
     document.querySelectorAll("[data-count]");
 
-
 let counterStarted = false;
-
 
 function startCounters() {
 
     if (counterStarted) return;
 
     counterStarted = true;
-
 
     counters.forEach((counter) => {
 
@@ -170,21 +171,17 @@ function startCounters() {
         const increment =
             target / (duration / 20);
 
-
         const timer =
             setInterval(() => {
 
                 current += increment;
-
 
                 if (current >= target) {
 
                     current = target;
 
                     clearInterval(timer);
-
                 }
-
 
                 counter.textContent =
                     Math.floor(current);
@@ -199,53 +196,59 @@ function startCounters() {
 const statsSection =
     document.querySelector(".stats-section");
 
-
 if (statsSection) {
 
-    const statsObserver =
-        new IntersectionObserver(
-            (entries) => {
+    if ("IntersectionObserver" in window) {
 
-                if (entries[0].isIntersecting) {
+        const statsObserver =
+            new IntersectionObserver(
+                (entries) => {
 
-                    startCounters();
+                    if (entries[0].isIntersecting) {
 
-                    statsObserver.disconnect();
+                        startCounters();
 
+                        statsObserver.disconnect();
+                    }
+
+                },
+                {
+                    threshold: 0.3
                 }
+            );
 
-            },
-            {
-                threshold: 0.3
-            }
-        );
+        statsObserver.observe(statsSection);
 
+    } else {
 
-    statsObserver.observe(statsSection);
+        startCounters();
+
+    }
 
 }
 
 
-/* =========================================
+/* =========================================================
    FAQ ACCORDION
-========================================= */
+   ========================================================= */
 
 const faqQuestions =
     document.querySelectorAll(".faq-question");
-
 
 faqQuestions.forEach((question) => {
 
     question.addEventListener("click", () => {
 
         const currentItem =
-            question.parentElement;
+            question.closest(".faq-item");
 
+        if (!currentItem) return;
 
         const isOpen =
             currentItem.classList.contains("open");
 
 
+        // Close all FAQ items
         document
             .querySelectorAll(".faq-item")
             .forEach((item) => {
@@ -255,11 +258,14 @@ faqQuestions.forEach((question) => {
                 const answer =
                     item.querySelector(".faq-answer");
 
-                answer.style.maxHeight = null;
+                if (answer) {
+                    answer.style.maxHeight = null;
+                }
 
             });
 
 
+        // Open selected FAQ item
         if (!isOpen) {
 
             currentItem.classList.add("open");
@@ -267,8 +273,12 @@ faqQuestions.forEach((question) => {
             const answer =
                 currentItem.querySelector(".faq-answer");
 
-            answer.style.maxHeight =
-                answer.scrollHeight + "px";
+            if (answer) {
+
+                answer.style.maxHeight =
+                    answer.scrollHeight + "px";
+
+            }
 
         }
 
@@ -277,62 +287,96 @@ faqQuestions.forEach((question) => {
 });
 
 
-/* =========================================
+/* =========================================================
    LOAN CALCULATOR
-========================================= */
+   ========================================================= */
 
 const calculateLoan =
     document.getElementById("calculateLoan");
-
 
 if (calculateLoan) {
 
     calculateLoan.addEventListener("click", () => {
 
-        const amount =
-            Number(
-                document.getElementById("loanAmount").value
-            );
+        const amountInput =
+            document.getElementById("loanAmount");
 
+        const rateInput =
+            document.getElementById("loanRate");
 
-        const annualRate =
-            Number(
-                document.getElementById("loanRate").value
-            );
-
-
-        const months =
-            Number(
-                document.getElementById("loanTerm").value
-            );
-
+        const termInput =
+            document.getElementById("loanTerm");
 
         const result =
             document.getElementById("monthlyPayment");
 
 
         if (
-            !amount ||
-            !months ||
-            amount <= 0 ||
+            !amountInput ||
+            !rateInput ||
+            !termInput ||
+            !result
+        ) {
+            return;
+        }
+
+
+        const amount =
+            Number(amountInput.value);
+
+        const annualRate =
+            Number(rateInput.value);
+
+        const months =
+            Number(termInput.value);
+
+
+        // Validate loan amount
+        if (
+            !Number.isFinite(amount) ||
+            amount <= 0
+        ) {
+
+            result.textContent =
+                "Enter a valid loan amount.";
+
+            return;
+        }
+
+
+        // Validate interest rate
+        if (
+            !Number.isFinite(annualRate) ||
+            annualRate < 0
+        ) {
+
+            result.textContent =
+                "Enter a valid interest rate.";
+
+            return;
+        }
+
+
+        // Validate loan term
+        if (
+            !Number.isFinite(months) ||
             months <= 0
         ) {
 
             result.textContent =
-                "Enter valid values";
+                "Enter a valid loan term.";
 
             return;
-
         }
 
 
         const monthlyRate =
             annualRate / 100 / 12;
 
-
         let monthlyPayment;
 
 
+        // Zero interest loan
         if (monthlyRate === 0) {
 
             monthlyPayment =
@@ -370,212 +414,31 @@ if (calculateLoan) {
 
 }
 
-/* =========================================
-   ACCOUNT FORM
-========================================= */
 
-const accountForm = document.getElementById("accountForm");
+/* =========================================================
+   NOTE:
+   ACCOUNT CREATION SYSTEM REMOVED
+   =========================================================
 
-if (accountForm) {
+   There is intentionally NO:
 
-    const formSteps = accountForm.querySelectorAll(".form-step");
-    const progressSteps = accountForm.querySelectorAll(".progress-step");
+   - accountForm
+   - Create Account JavaScript
+   - registeredUser
+   - password storage
+   - account password validation
+   - automatic account creation
 
-    let currentStep = 1;
+   Login is now a frontend demo login.
+*/
 
-    function showStep(step) {
 
-        formSteps.forEach((formStep) => {
-            formStep.classList.remove("active");
-
-            if (Number(formStep.dataset.step) === step) {
-                formStep.classList.add("active");
-            }
-        });
-
-        progressSteps.forEach((progressStep, index) => {
-            progressStep.classList.toggle("active", index < step);
-        });
-
-        currentStep = step;
-    }
-
-
-    /* =========================================
-       NEXT BUTTON
-    ========================================= */
-
-    const nextButtons = accountForm.querySelectorAll(".next-step");
-
-    nextButtons.forEach((button) => {
-
-        button.addEventListener("click", () => {
-
-            const currentFormStep = accountForm.querySelector(
-                `.form-step[data-step="${currentStep}"]`
-            );
-
-            const inputs = currentFormStep.querySelectorAll(
-                "input, select"
-            );
-
-            let valid = true;
-
-            inputs.forEach((input) => {
-
-                if (!input.checkValidity()) {
-                    input.reportValidity();
-                    valid = false;
-                }
-
-            });
-
-            if (!valid) return;
-
-            if (currentStep < 3) {
-                showStep(currentStep + 1);
-            }
-
-        });
-
-    });
-
-
-    /* =========================================
-       PREVIOUS BUTTON
-    ========================================= */
-
-    const prevButtons = accountForm.querySelectorAll(".prev-step");
-
-    prevButtons.forEach((button) => {
-
-        button.addEventListener("click", () => {
-
-            if (currentStep > 1) {
-                showStep(currentStep - 1);
-            }
-
-        });
-
-    });
-
-
-    /* =========================================
-       CREATE ACCOUNT
-    ========================================= */
-
-    accountForm.addEventListener("submit", (event) => {
-
-        event.preventDefault();
-
-        // Get information from the form
-        const firstName =
-            document.getElementById("firstName").value.trim();
-
-        const lastName =
-            document.getElementById("lastName").value.trim();
-
-        const dob =
-            document.getElementById("dob").value;
-
-        const accountType =
-            document.getElementById("accountType").value;
-
-        const email =
-            document.getElementById("email").value.trim().toLowerCase();
-
-        const password =
-            document.getElementById("password").value;
-
-        const phone =
-            document.getElementById("phone").value.trim();
-
-        const city =
-            document.getElementById("city").value.trim();
-
-
-        // =========================================
-        // CREATE USER OBJECT
-        // =========================================
-
-        const newUser = {
-
-            fullName: `${firstName} ${lastName}`,
-
-            firstName: firstName,
-
-            lastName: lastName,
-
-            email: email,
-
-            password: password,
-
-            dob: dob,
-
-            accountType: accountType,
-
-            phone: phone,
-
-            city: city,
-
-            // IMPORTANT:
-            // Every new account starts with zero balance
-            balance: 0
-
-        };
-
-
-        // =========================================
-        // SAVE USER
-        // =========================================
-
-        localStorage.setItem(
-            "registeredUser",
-            JSON.stringify(newUser)
-        );
-
-
-        // =========================================
-        // LOG USER IN AUTOMATICALLY
-        // =========================================
-
-        localStorage.setItem(
-            "currentUser",
-            JSON.stringify(newUser)
-        );
-
-        sessionStorage.setItem(
-            "isLoggedIn",
-            "true"
-        );
-
-
-        // =========================================
-        // SUCCESS MESSAGE
-        // =========================================
-
-        alert(
-            `Account created successfully!\n\nWelcome ${firstName} ${lastName}!`
-        );
-
-
-        // =========================================
-        // GO TO DASHBOARD
-        // =========================================
-
-        window.location.href = "dashboard.html";
-
-    });
-
-}
-
-/* =========================================
+/* =========================================================
    CONTACT FORM
-========================================= */
+   ========================================================= */
 
 const contactForm =
     document.getElementById("contactForm");
-
 
 if (contactForm) {
 
@@ -585,16 +448,17 @@ if (contactForm) {
 
             event.preventDefault();
 
-
             const message =
                 document.getElementById(
                     "contactMessage"
                 );
 
+            if (message) {
 
-            message.textContent =
-                "Thank you! Your message has been received in this frontend demo.";
+                message.textContent =
+                    "Thank you! Your message has been received in this frontend demo.";
 
+            }
 
             contactForm.reset();
 
@@ -603,456 +467,427 @@ if (contactForm) {
 
 }
 
+
 /* =========================================================
    LOGIN FEATURE
    ========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    // =========================================
-    // GET HTML ELEMENTS
-    // =========================================
-
-    const loginModal =
-        document.getElementById("loginModal");
-
-    const openLogin =
-        document.getElementById("openLogin");
-
-    const closeLogin =
-        document.getElementById("closeLogin");
-
-    const loginOverlay =
-        document.getElementById("loginOverlay");
-
-    const loginForm =
-        document.getElementById("loginForm");
-
-    const loginEmail =
-        document.getElementById("loginEmail");
-
-    const loginPassword =
-        document.getElementById("loginPassword");
-
-    const emailError =
-        document.getElementById("loginEmailError");
-
-    const passwordError =
-        document.getElementById("loginPasswordError");
-
-    const togglePassword =
-        document.getElementById("toggleLoginPassword");
-
-    const loginMessage =
-        document.getElementById("loginMessage");
-
-    const forgotPassword =
-        document.getElementById("forgotPassword");
-
-
-    // =========================================
-    // OPEN LOGIN MODAL
-    // =========================================
-
-    function openLoginModal(event) {
-
-        if (event) {
-            event.preventDefault();
-        }
-
-        if (!loginModal) return;
-
-        loginModal.classList.add("show");
-
-        loginModal.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        document.body.classList.add(
-            "login-open"
-        );
-
-        setTimeout(() => {
-
-            if (loginEmail) {
-                loginEmail.focus();
-            }
-
-        }, 100);
-    }
-
-
-    // =========================================
-    // CLOSE LOGIN MODAL
-    // =========================================
-
-    function closeLoginModal() {
-
-        if (!loginModal) return;
-
-        loginModal.classList.remove("show");
-
-        loginModal.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-        document.body.classList.remove(
-            "login-open"
-        );
-    }
-
-
-    // =========================================
-    // CLEAR ERRORS
-    // =========================================
-
-    function clearLoginErrors() {
-
-        if (emailError) {
-            emailError.textContent = "";
-        }
-
-        if (passwordError) {
-            passwordError.textContent = "";
-        }
-
-        if (loginMessage) {
-
-            loginMessage.className =
-                "login-message";
-
-            loginMessage.textContent = "";
-        }
-    }
-
-
-    // =========================================
-    // OPEN LOGIN BUTTON
-    // =========================================
-
-    if (openLogin) {
-
-        openLogin.addEventListener(
-            "click",
-            openLoginModal
-        );
-    }
-
-
-    // =========================================
-    // CLOSE BUTTON
-    // =========================================
-
-    if (closeLogin) {
-
-        closeLogin.addEventListener(
-            "click",
-            closeLoginModal
-        );
-    }
-
-
-    // =========================================
-    // CLOSE WHEN CLICKING OVERLAY
-    // =========================================
-
-    if (loginOverlay) {
-
-        loginOverlay.addEventListener(
-            "click",
-            closeLoginModal
-        );
-    }
-
-
-    // =========================================
-    // ESC KEY
-    // =========================================
-
-    document.addEventListener(
-        "keydown",
-        (event) => {
-
-            if (
-                event.key === "Escape" &&
-                loginModal &&
-                loginModal.classList.contains("show")
-            ) {
-
-                closeLoginModal();
-            }
-        }
-    );
-
-
-    // =========================================
-    // SHOW / HIDE PASSWORD
-    // =========================================
-
-    if (togglePassword) {
-
-        togglePassword.addEventListener(
-            "click",
-            () => {
-
-                const isPassword =
-                    loginPassword.type === "password";
-
-                if (isPassword) {
-
-                    loginPassword.type = "text";
-
-                    togglePassword.textContent =
-                        "Hide";
-
-                } else {
-
-                    loginPassword.type =
-                        "password";
-
-                    togglePassword.textContent =
-                        "Show";
-                }
-            }
-        );
-    }
-
-
-    // =========================================
-    // LOGIN FORM
-    // =========================================
-
-    if (loginForm) {
-
-        loginForm.addEventListener(
-            "submit",
-            (event) => {
-
-                event.preventDefault();
-
-                clearLoginErrors();
-
-
-                // Get entered values
-
-                const email =
-                    loginEmail.value.trim();
-
-                const password =
-                    loginPassword.value;
-
-
-                // =====================================
-                // CHECK EMPTY EMAIL
-                // =====================================
-
-                if (email === "") {
-
-                    emailError.textContent =
-                        "Please enter your email address.";
-
-                    return;
-                }
-
-
-                // =====================================
-                // CHECK EMAIL FORMAT
-                // =====================================
-
-                const emailPattern =
-                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-                if (!emailPattern.test(email)) {
-
-                    emailError.textContent =
-                        "Please enter a valid email address.";
-
-                    return;
-                }
-
-
-                // =====================================
-                // CHECK EMPTY PASSWORD
-                // =====================================
-
-                if (password === "") {
-
-                    passwordError.textContent =
-                        "Please enter your password.";
-
-                    return;
-                }
-
-
-               // =====================================
-// GET REGISTERED USER
-// =====================================
-
-const savedUser = localStorage.getItem("registeredUser");
-
-if (!savedUser) {
-
-    loginMessage.className =
-        "login-message error";
-
-    loginMessage.textContent =
-        "No account found. Please create an account first.";
-
-    return;
-}
-
-const registeredUser = JSON.parse(savedUser);
-
-
-// =====================================
-// CHECK EMAIL
-// =====================================
-
-if (email !== registeredUser.email) {
-
-    emailError.textContent =
-        "No account exists with this email.";
-
-    return;
-}
-
-
-// =====================================
-// CHECK PASSWORD
-// =====================================
-
-if (password !== registeredUser.password) {
-
-    passwordError.textContent =
-        "Incorrect password.";
-
-    return;
-}
-
-
-// =====================================
-// LOGIN SUCCESSFUL
-// =====================================
-
-loginMessage.className =
-    "login-message success";
-
-loginMessage.textContent =
-    "Login successful! Redirecting...";
-
-
-// =====================================
-// SAVE CURRENT USER
-// =========================================
-
-localStorage.setItem(
-    "currentUser",
-    JSON.stringify(registeredUser)
-);
-
-sessionStorage.setItem(
-    "isLoggedIn",
-    "true"
-);
-
-
-// =========================================
-// GO TO DASHBOARD
-// =========================================
-
-setTimeout(() => {
-
-    window.location.href =
-        "dashboard.html";
-
-}, 1000);
-
-
-                // =====================================
-                // GO TO DASHBOARD
-                // =====================================
-
-                setTimeout(() => {
-
-                    window.location.href =
-                        "dashboard.html";
-
-                }, 1000);
-
-            }
-        );
-    }
-
-
-    // =========================================
-    // FORGOT PASSWORD
-    // =========================================
-
-    if (forgotPassword) {
-
-        forgotPassword.addEventListener(
-            "click",
-            (event) => {
-
-                event.preventDefault();
-
-                loginMessage.className =
-                    "login-message info";
-
-                loginMessage.textContent =
-                    "Password recovery is not connected in this frontend demo.";
-            }
-        );
-    }
-
-});
-
-
-
-/* =========================================
-   HERO IMAGE SLIDER
-========================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
+        /* =========================================
+           GET LOGIN ELEMENTS
+           ========================================= */
 
-        /* ================================
-           GET ELEMENTS
-        ================================= */
+        const loginModal =
+            document.getElementById("loginModal");
+
+        const openLogin =
+            document.getElementById("openLogin");
+
+        const closeLogin =
+            document.getElementById("closeLogin");
+
+        const loginOverlay =
+            document.getElementById("loginOverlay");
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const loginEmail =
+            document.getElementById("loginEmail");
+
+        const loginPassword =
+            document.getElementById("loginPassword");
+
+        const emailError =
+            document.getElementById("loginEmailError");
+
+        const passwordError =
+            document.getElementById(
+                "loginPasswordError"
+            );
+
+        const togglePassword =
+            document.getElementById(
+                "toggleLoginPassword"
+            );
+
+        const loginMessage =
+            document.getElementById("loginMessage");
+
+
+        /* =========================================
+           OPEN LOGIN MODAL
+           ========================================= */
+
+        function openLoginModal(event) {
+
+            if (event) {
+                event.preventDefault();
+            }
+
+            if (!loginModal) return;
+
+            loginModal.classList.add("show");
+
+            loginModal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.classList.add(
+                "login-open"
+            );
+
+
+            setTimeout(() => {
+
+                if (loginEmail) {
+                    loginEmail.focus();
+                }
+
+            }, 100);
+
+        }
+
+
+        /* =========================================
+           CLOSE LOGIN MODAL
+           ========================================= */
+
+        function closeLoginModal() {
+
+            if (!loginModal) return;
+
+            loginModal.classList.remove("show");
+
+            loginModal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.classList.remove(
+                "login-open"
+            );
+
+        }
+
+
+        /* =========================================
+           CLEAR LOGIN ERRORS
+           ========================================= */
+
+        function clearLoginErrors() {
+
+            if (emailError) {
+                emailError.textContent = "";
+            }
+
+            if (passwordError) {
+                passwordError.textContent = "";
+            }
+
+            if (loginMessage) {
+
+                loginMessage.className =
+                    "login-message";
+
+                loginMessage.textContent = "";
+
+            }
+
+        }
+
+
+        /* =========================================
+           OPEN LOGIN BUTTON
+           ========================================= */
+
+        if (openLogin) {
+
+            openLogin.addEventListener(
+                "click",
+                openLoginModal
+            );
+
+        }
+
+
+        /* =========================================
+           CLOSE LOGIN BUTTON
+           ========================================= */
+
+        if (closeLogin) {
+
+            closeLogin.addEventListener(
+                "click",
+                closeLoginModal
+            );
+
+        }
+
+
+        /* =========================================
+           CLOSE LOGIN USING OVERLAY
+           ========================================= */
+
+        if (loginOverlay) {
+
+            loginOverlay.addEventListener(
+                "click",
+                closeLoginModal
+            );
+
+        }
+
+
+        /* =========================================
+           CLOSE LOGIN WITH ESC KEY
+           ========================================= */
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key === "Escape" &&
+                    loginModal &&
+                    loginModal.classList.contains("show")
+                ) {
+
+                    closeLoginModal();
+
+                }
+
+            }
+        );
+
+
+        /* =========================================
+           SHOW / HIDE PASSWORD
+           ========================================= */
+
+        if (
+            togglePassword &&
+            loginPassword
+        ) {
+
+            togglePassword.addEventListener(
+                "click",
+                () => {
+
+                    const isPassword =
+                        loginPassword.type === "password";
+
+
+                    if (isPassword) {
+
+                        loginPassword.type = "text";
+
+                        togglePassword.textContent =
+                            "Hide";
+
+                    } else {
+
+                        loginPassword.type =
+                            "password";
+
+                        togglePassword.textContent =
+                            "Show";
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =========================================
+           LOGIN FORM
+           ========================================= */
+
+        if (loginForm) {
+
+            loginForm.addEventListener(
+                "submit",
+                (event) => {
+
+                    event.preventDefault();
+
+                    clearLoginErrors();
+
+
+                    /* =====================================
+                       GET LOGIN VALUES
+                       ===================================== */
+
+                    const email =
+                        loginEmail
+                            ? loginEmail.value.trim()
+                            : "";
+
+                    const password =
+                        loginPassword
+                            ? loginPassword.value
+                            : "";
+
+
+                    /* =====================================
+                       BASIC INPUT CHECK
+                       ===================================== */
+
+                    if (email === "") {
+
+                        if (emailError) {
+
+                            emailError.textContent =
+                                "Please enter your email.";
+
+                        }
+
+                        return;
+
+                    }
+
+
+                    if (password === "") {
+
+                        if (passwordError) {
+
+                            passwordError.textContent =
+                                "Please enter your password.";
+
+                        }
+
+                        return;
+
+                    }
+
+
+                    /* =====================================
+                       FRONTEND DEMO LOGIN
+                       =====================================
+
+                       IMPORTANT:
+
+                       - ANY email can log in.
+                       - ANY password can log in.
+                       - Password is NOT checked.
+                       - Password is NOT stored.
+                       - No registeredUser is required.
+                       - No Create Account is required.
+                       ===================================== */
+
+
+                    const demoUser = {
+
+                        email: email,
+
+                        fullName:
+                            "NexaBank User",
+
+                        accountType:
+                            "Personal Account",
+
+                        balance: 0
+
+                    };
+
+
+                    /* =====================================
+                       SAVE ONLY SAFE DEMO USER INFORMATION
+                       ===================================== */
+
+                    localStorage.setItem(
+                        "currentUser",
+                        JSON.stringify(demoUser)
+                    );
+
+
+                    /* =====================================
+                       CREATE LOGIN SESSION
+                       ===================================== */
+
+                    sessionStorage.setItem(
+                        "isLoggedIn",
+                        "true"
+                    );
+
+
+                    /* =====================================
+                       SUCCESS MESSAGE
+                       ===================================== */
+
+                    if (loginMessage) {
+
+                        loginMessage.className =
+                            "login-message success";
+
+                        loginMessage.textContent =
+                            "Login successful! Redirecting...";
+
+                    }
+
+
+                    /* =====================================
+                       GO TO DASHBOARD
+                       ===================================== */
+
+                    setTimeout(() => {
+
+                        window.location.href =
+                            "dashboard.html";
+
+                    }, 500);
+
+                }
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   HERO IMAGE SLIDER
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        /* =========================================
+           GET SLIDER ELEMENTS
+           ========================================= */
 
         const slides =
             document.querySelectorAll(
                 ".hero-slide"
             );
 
-
         const dots =
             document.querySelectorAll(
                 ".hero-dot"
             );
-
 
         const nextButton =
             document.getElementById(
                 "heroNext"
             );
 
-
         const prevButton =
             document.getElementById(
                 "heroPrev"
             );
 
-
         const progressBar =
             document.getElementById(
                 "heroProgressBar"
             );
-
 
         const hero =
             document.getElementById(
@@ -1060,84 +895,85 @@ document.addEventListener(
             );
 
 
-        /* ================================
+        /* =========================================
+           STOP IF SLIDER DOES NOT EXIST
+           ========================================= */
+
+        if (!hero || slides.length === 0) {
+            return;
+        }
+
+
+        /* =========================================
            SETTINGS
-        ================================= */
+           ========================================= */
 
         let currentSlide = 0;
 
         const slideDuration = 5000;
 
-        let slideTimer;
+        let slideTimer = null;
 
-        let progressTimer;
+        let progressTimer = null;
 
 
-
-        /* ================================
+        /* =========================================
            SHOW SLIDE
-        ================================= */
+           ========================================= */
 
         function showSlide(index) {
 
+            if (slides.length === 0) {
+                return;
+            }
+
 
             /* Remove active class */
+            slides.forEach((slide) => {
 
-            slides.forEach(
-                (slide) => {
+                slide.classList.remove(
+                    "active"
+                );
 
-                    slide.classList.remove(
-                        "active"
-                    );
-
-                }
-            );
+            });
 
 
-            dots.forEach(
-                (dot) => {
+            /* Remove active dot */
+            dots.forEach((dot) => {
 
-                    dot.classList.remove(
-                        "active"
-                    );
+                dot.classList.remove(
+                    "active"
+                );
 
-                }
-            );
+            });
 
 
             /* Make sure index is valid */
 
-            if (
-                index >= slides.length
-            ) {
-
+            if (index >= slides.length) {
                 currentSlide = 0;
-
             }
 
-
-            if (
-                index < 0
-            ) {
-
+            if (index < 0) {
                 currentSlide =
                     slides.length - 1;
-
             }
 
 
             /* Activate slide */
 
             slides[currentSlide]
-                .classList
-                .add("active");
+                .classList.add("active");
 
 
-            /* Activate indicator */
+            /* Activate dot */
 
-            dots[currentSlide]
-                .classList
-                .add("active");
+            if (dots[currentSlide]) {
+
+                dots[currentSlide]
+                    .classList.add("active");
+
+            }
 
 
             /* Restart progress */
@@ -1147,10 +983,9 @@ document.addEventListener(
         }
 
 
-
-        /* ================================
+        /* =========================================
            NEXT SLIDE
-        ================================= */
+           ========================================= */
 
         function nextSlide() {
 
@@ -1165,49 +1000,38 @@ document.addEventListener(
 
             }
 
-            showSlide(
-                currentSlide
-            );
+            showSlide(currentSlide);
 
         }
 
 
-
-        /* ================================
+        /* =========================================
            PREVIOUS SLIDE
-        ================================= */
+           ========================================= */
 
         function previousSlide() {
 
             currentSlide--;
 
-            if (
-                currentSlide < 0
-            ) {
+            if (currentSlide < 0) {
 
                 currentSlide =
                     slides.length - 1;
 
             }
 
-            showSlide(
-                currentSlide
-            );
+            showSlide(currentSlide);
 
         }
 
 
-
-        /* ================================
+        /* =========================================
            AUTOMATIC SLIDER
-        ================================= */
+           ========================================= */
 
         function startSlider() {
 
-            clearInterval(
-                slideTimer
-            );
-
+            clearInterval(slideTimer);
 
             slideTimer =
                 setInterval(
@@ -1218,17 +1042,17 @@ document.addEventListener(
         }
 
 
-
-        /* ================================
+        /* =========================================
            PROGRESS BAR
-        ================================= */
+           ========================================= */
 
         function startProgress() {
 
-            clearInterval(
-                progressTimer
-            );
+            if (!progressBar) {
+                return;
+            }
 
+            clearTimeout(progressTimer);
 
             progressBar.style.transition =
                 "none";
@@ -1237,8 +1061,8 @@ document.addEventListener(
                 "0%";
 
 
-            setTimeout(
-                () => {
+            progressTimer =
+                setTimeout(() => {
 
                     progressBar.style.transition =
                         `width ${slideDuration}ms linear`;
@@ -1246,83 +1070,96 @@ document.addEventListener(
                     progressBar.style.width =
                         "100%";
 
-                },
-                50
+                }, 50);
+
+        }
+
+
+        /* =========================================
+           NEXT BUTTON
+           ========================================= */
+
+        if (nextButton) {
+
+            nextButton.addEventListener(
+                "click",
+                () => {
+
+                    nextSlide();
+
+                    startSlider();
+
+                }
             );
 
         }
 
 
-
-        /* ================================
-           NEXT BUTTON
-        ================================= */
-
-        nextButton.addEventListener(
-            "click",
-            () => {
-
-                nextSlide();
-
-                startSlider();
-
-            }
-        );
-
-
-
-        /* ================================
+        /* =========================================
            PREVIOUS BUTTON
-        ================================= */
+           ========================================= */
 
-        prevButton.addEventListener(
-            "click",
-            () => {
+        if (prevButton) {
 
-                previousSlide();
+            prevButton.addEventListener(
+                "click",
+                () => {
 
-                startSlider();
+                    previousSlide();
 
-            }
-        );
+                    startSlider();
+
+                }
+            );
+
+        }
 
 
-
-        /* ================================
+        /* =========================================
            DOT NAVIGATION
-        ================================= */
+           ========================================= */
 
-        dots.forEach(
-            (dot) => {
+        dots.forEach((dot) => {
 
-                dot.addEventListener(
-                    "click",
-                    () => {
+            dot.addEventListener(
+                "click",
+                () => {
 
-                        currentSlide =
-                            Number(
-                                dot.dataset.slide
-                            );
-
-
-                        showSlide(
-                            currentSlide
+                    const selectedSlide =
+                        Number(
+                            dot.dataset.slide
                         );
 
 
-                        startSlider();
-
+                    if (
+                        Number.isNaN(
+                            selectedSlide
+                        )
+                    ) {
+                        return;
                     }
-                );
-
-            }
-        );
 
 
+                    currentSlide =
+                        selectedSlide;
 
-        /* ================================
+
+                    showSlide(
+                        currentSlide
+                    );
+
+
+                    startSlider();
+
+                }
+            );
+
+        });
+
+
+        /* =========================================
            PAUSE ON HOVER
-        ================================= */
+           ========================================= */
 
         hero.addEventListener(
             "mouseenter",
@@ -1336,10 +1173,9 @@ document.addEventListener(
         );
 
 
-
-        /* ================================
+        /* =========================================
            RESUME AFTER HOVER
-        ================================= */
+           ========================================= */
 
         hero.addEventListener(
             "mouseleave",
@@ -1351,99 +1187,126 @@ document.addEventListener(
         );
 
 
+        /* =========================================
+           START SLIDER
+           ========================================= */
 
-        /* ================================
-           START
-        ================================= */
-
-        showSlide(
-            currentSlide
-        );
-
+        showSlide(currentSlide);
 
         startSlider();
 
     }
-);/* =========================================================
+);
+
+
+/* =========================================================
    GLOBAL LIGHT / DARK MODE
-========================================================= */
+   ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    const themeToggle =
-        document.getElementById("themeToggle");
+        const themeToggle =
+            document.getElementById(
+                "themeToggle"
+            );
 
-    const themeIcon =
-        document.getElementById("themeIcon");
-
-
-    /* =====================================================
-       LOAD SAVED THEME
-    ===================================================== */
-
-    const savedTheme =
-        localStorage.getItem("nexaTheme");
+        const themeIcon =
+            document.getElementById(
+                "themeIcon"
+            );
 
 
-    if (savedTheme === "dark") {
+        /* =========================================
+           LOAD SAVED THEME
+           ========================================= */
 
-        document.body.classList.add("dark-mode");
-
-        if (themeIcon) {
-            themeIcon.textContent = "☀️";
-        }
-
-    } else {
-
-        document.body.classList.remove("dark-mode");
-
-        if (themeIcon) {
-            themeIcon.textContent = "🌙";
-        }
-
-    }
-
-    
+        const savedTheme =
+            localStorage.getItem(
+                "nexaTheme"
+            );
 
 
-    /* =====================================================
-       TOGGLE THEME
-    ===================================================== */
+        if (savedTheme === "dark") {
 
-    if (themeToggle) {
+            document.body.classList.add(
+                "dark-mode"
+            );
 
-        themeToggle.addEventListener("click", () => {
+            if (themeIcon) {
 
-            const isDark =
-                document.body.classList.toggle("dark-mode");
-
-
-            if (isDark) {
-
-                localStorage.setItem(
-                    "nexaTheme",
-                    "dark"
-                );
-
-                if (themeIcon) {
-                    themeIcon.textContent = "☀️";
-                }
-
-            } else {
-
-                localStorage.setItem(
-                    "nexaTheme",
-                    "light"
-                );
-
-                if (themeIcon) {
-                    themeIcon.textContent = "🌙";
-                }
+                themeIcon.textContent =
+                    "☀️";
 
             }
 
-        });
+        } else {
+
+            document.body.classList.remove(
+                "dark-mode"
+            );
+
+            if (themeIcon) {
+
+                themeIcon.textContent =
+                    "🌙";
+
+            }
+
+        }
+
+
+        /* =========================================
+           TOGGLE THEME
+           ========================================= */
+
+        if (themeToggle) {
+
+            themeToggle.addEventListener(
+                "click",
+                () => {
+
+                    const isDark =
+                        document.body.classList.toggle(
+                            "dark-mode"
+                        );
+
+
+                    if (isDark) {
+
+                        localStorage.setItem(
+                            "nexaTheme",
+                            "dark"
+                        );
+
+                        if (themeIcon) {
+
+                            themeIcon.textContent =
+                                "☀️";
+
+                        }
+
+                    } else {
+
+                        localStorage.setItem(
+                            "nexaTheme",
+                            "light"
+                        );
+
+                        if (themeIcon) {
+
+                            themeIcon.textContent =
+                                "🌙";
+
+                        }
+
+                    }
+
+                }
+            );
+
+        }
 
     }
-
-});
+);
